@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -12,12 +15,28 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const scrollToSection = (id) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+    const handleNavClick = (item) => {
+        if (item.type === 'link') {
+            navigate(item.path);
+            window.scrollTo(0, 0);
+        } else {
+            if (location.pathname === '/') {
+                const element = document.getElementById(item.id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                navigate('/', { state: { scrollTo: item.id } });
+            }
         }
     };
+
+    const navItems = [
+        { label: 'Programs', id: 'programs', type: 'scroll' },
+        { label: 'How It Works', id: 'how-it-works', type: 'scroll' },
+        { label: 'Certificate', id: 'certificate', type: 'scroll' },
+        { label: 'Campus Ambassador', path: '/campus-ambassador', type: 'link' },
+    ];
 
     return (
         <motion.nav
@@ -34,7 +53,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-20">
 
                     {/* Logo */}
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 cursor-pointer" onClick={() => { navigate('/'); window.scrollTo(0, 0); }}>
                         <img
                             src="/global-interns-logo.png"
                             alt="Global Interns"
@@ -44,18 +63,14 @@ const Navbar = () => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-10">
-                        {[
-                            { label: 'Programs', id: 'programs' },
-                            { label: 'How It Works', id: 'how-it-works' },
-                            { label: 'Certificate', id: 'certificate' },
-                        ].map((item, index) => (
+                        {navItems.map((item, index) => (
                             <button
                                 key={index}
-                                onClick={() => scrollToSection(item.id)}
+                                onClick={() => handleNavClick(item)}
                                 className="relative text-text-secondary font-medium transition-colors hover:text-text-primary group"
                             >
                                 {item.label}
-                                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-accent-orange transition-all group-hover:w-full" />
+                                <span className={`absolute left-0 -bottom-1 h-[2px] transition-all group-hover:w-full ${location.pathname === item.path ? 'w-full bg-accent-orange' : 'w-0 bg-accent-orange'}`} />
                             </button>
                         ))}
                     </div>
@@ -65,7 +80,7 @@ const Navbar = () => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => scrollToSection('apply')}
+                            onClick={() => handleNavClick({ id: 'apply', type: 'scroll' })}
                             className="bg-accent-orange hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl shadow-md shadow-accent-orange/30 transition-all"
                         >
                             Apply Now
