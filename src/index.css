@@ -3,11 +3,36 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    --accent-orange: #f97316;
+    --accent-hover: #ea580c;
+  }
+
+  .dark {
+    --bg-primary: #0f1115;
+    --bg-secondary: #181b21;
+    --text-primary: #ffffff;
+    --text-secondary: #9ca3af;
+    --border-color: #2a2d35;
+    --accent-orange: #f97316;
+    --accent-hover: #ea580c;
+  }
+
   body {
     @apply font-sans text-text-primary bg-primary-bg;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-semibold;
   }
 }

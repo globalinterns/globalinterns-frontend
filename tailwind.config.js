@@ -4,21 +4,22 @@ export default {
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
     ],
+    darkMode: 'class',
     theme: {
         extend: {
             colors: {
                 primary: {
-                    bg: '#ffffff',
-                    secondary: '#f9fafb',
+                    bg: 'var(--bg-primary)',
+                    secondary: 'var(--bg-secondary)',
                 },
                 text: {
-                    primary: '#111827',
-                    secondary: '#6b7280',
+                    primary: 'var(--text-primary)',
+                    secondary: 'var(--text-secondary)',
                 },
-                border: '#e5e7eb',
+                border: 'var(--border-color)',
                 accent: {
-                    orange: '#f97316',
-                    hover: '#ea580c',
+                    orange: 'var(--accent-orange)',
+                    hover: 'var(--accent-hover)',
                 }
             },
             fontFamily: {

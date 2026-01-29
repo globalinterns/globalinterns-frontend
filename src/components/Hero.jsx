@@ -80,7 +80,7 @@ const Hero = () => {
                             <motion.button
                                 whileHover={{ scale: 1.03 }}
                                 whileTap={{ scale: 0.97 }}
-                                onClick={() => scrollToSection('apply')}
+                                onClick={() => window.open('https://forms.gle/x2pA6hG49zrpp84K8', '_blank')}
                                 className="bg-accent-orange hover:bg-accent-hover text-white font-semibold px-9 py-4 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-accent-orange/30"
                             >
                                 Apply for Internship

@@ -5,6 +5,7 @@ import SocialSidebar from './components/SocialSidebar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import CampusAmbassador from './pages/CampusAmbassador';
+import ResumeCheck from './pages/ResumeCheck';
 import WebDevelopmentProgram from './pages/WebDevelopmentProgram';
 import ArtificialIntelligenceProgram from './pages/ArtificialIntelligenceProgram';
 import MachineLearningProgram from './pages/MachineLearningProgram';
@@ -56,6 +57,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/campus-ambassador" element={<CampusAmbassador />} />
+                    <Route path="/resume-check" element={<ResumeCheck />} />
                     <Route path="/program/web-development" element={<WebDevelopmentProgram />} />
                     <Route path="/program/artificial-intelligence" element={<ArtificialIntelligenceProgram />} />
                     <Route path="/program/machine-learning" element={<MachineLearningProgram />} />

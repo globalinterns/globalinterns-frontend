@@ -22,7 +22,7 @@ const SocialSidebar = () => {
             <a href="#" className="hover:text-accent-orange transition-colors duration-300 hover:scale-110 transform">
                 <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="hover:text-accent-orange transition-colors duration-300 hover:scale-110 transform">
+            <a href="https://www.linkedin.com/company/globall-internn/" target="_blank" rel="noopener noreferrer" className="hover:text-accent-orange transition-colors duration-300 hover:scale-110 transform">
                 <Linkedin className="w-5 h-5" />
             </a>
             <a href="#" className="hover:text-accent-orange transition-colors duration-300 hover:scale-110 transform">

@@ -58,14 +58,6 @@ const Footer = () => {
                             </li>
                             <li>
                                 <button
-                                    onClick={() => handleNavClick('certificate')}
-                                    className="text-text-secondary hover:text-accent-orange transition-colors text-sm"
-                                >
-                                    Certificate
-                                </button>
-                            </li>
-                            <li>
-                                <button
                                     onClick={() => {
                                         navigate('/campus-ambassador');
                                         window.scrollTo(0, 0);
@@ -83,7 +75,9 @@ const Footer = () => {
                         <h3 className="font-semibold text-text-primary mb-4">Connect</h3>
                         <div className="flex gap-3">
                             <a
-                                href="#"
+                                href="https://www.linkedin.com/company/globall-internn/"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="w-9 h-9 bg-primary-secondary hover:bg-accent-orange/10 rounded-lg flex items-center justify-center transition-colors group"
                             >
                                 <Linkedin className="w-4 h-4 text-text-secondary group-hover:text-accent-orange" />

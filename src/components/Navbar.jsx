@@ -8,6 +8,7 @@ const Navbar = () => {
     const [hoveredItem, setHoveredItem] = useState(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [mobileCategoryOpen, setMobileCategoryOpen] = useState('');
+
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -94,8 +95,8 @@ const Navbar = () => {
     const navItems = [
         { label: 'Career Starter', id: 'career-starter', type: 'dropdown' },
         { label: 'Go Global', path: '/global', type: 'link' },
+        { label: 'ATS Score', path: '/resume-check', type: 'link' },
         { label: 'How It Works', id: 'how-it-works', type: 'scroll' },
-        { label: 'Certificate', id: 'certificate', type: 'scroll' },
         { label: 'Campus Ambassador', path: '/campus-ambassador', type: 'link' },
     ];
 
@@ -185,10 +186,12 @@ const Navbar = () => {
 
                     {/* CTA & Mobile Toggle */}
                     <div className="flex items-center gap-3">
+
+
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => handleNavClick({ id: 'apply', type: 'scroll' })}
+                            onClick={() => window.open('https://forms.gle/x2pA6hG49zrpp84K8', '_blank')}
                             className="bg-accent-orange hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl shadow-md shadow-accent-orange/30 transition-all hidden sm:block"
                         >
                             Apply Now
@@ -196,7 +199,7 @@ const Navbar = () => {
 
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="md:hidden p-2 text-text-primary hover:bg-gray-100 rounded-lg transition-colors"
+                            className="md:hidden p-2 text-text-primary hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                         >
                             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
@@ -266,9 +269,10 @@ const Navbar = () => {
                                     )}
                                 </div>
                             ))}
-                            <div className="pt-4 pb-8">
+                            <div className="pt-4 pb-8 flex flex-col gap-4">
+
                                 <button
-                                    onClick={() => handleNavClick({ id: 'apply', type: 'scroll' })}
+                                    onClick={() => window.open('https://forms.gle/x2pA6hG49zrpp84K8', '_blank')}
                                     className="w-full bg-accent-orange text-white font-bold py-4 rounded-xl shadow-lg shadow-accent-orange/20"
                                 >
                                     Apply Now
