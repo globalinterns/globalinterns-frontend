@@ -586,7 +586,7 @@ const FindDreamJob = () => {
                             <button
                                 onClick={() => {
                                     setLoading(true);
-                                    window.open('https://payit.cc/SrSi0UD254', '_blank');
+                                    window.open('https://rzp.io/rzp/z9L1jqE', '_blank');
                                     // Simulate verification/waiting for user to return
                                     setTimeout(() => {
                                         setLoading(false);
