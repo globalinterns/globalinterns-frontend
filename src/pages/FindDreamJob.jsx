@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Upload, FileText, CheckCircle, Briefcase, Building2, TrendingUp, ChevronRight, AlertCircle, BookOpen, Star, RefreshCw, ArrowRight, User, Mail, GraduationCap, Phone } from 'lucide-react';
+import { Upload, FileText, CheckCircle, Briefcase, Building2, TrendingUp, ChevronRight, AlertCircle, BookOpen, Star, RefreshCw, ArrowRight, User, Mail, GraduationCap, Phone, ArrowLeft, CreditCard, Lock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const FindDreamJob = () => {
@@ -67,6 +67,15 @@ const FindDreamJob = () => {
         }
     };
 
+    const handleBack = () => {
+        if (step === 1.5) setStep(1);
+        else if (step === 2) {
+            setStep(resumeMethod === 'upload' ? 1 : 1.5);
+        }
+        else if (step === 3.5) setStep(2); // Back from payment to preferences (skip analysis animation)
+        else if (step > 1) setStep(step - 1);
+    };
+
     const handlePreferenceSubmit = () => {
         setStep(3);
         // Simulate Analysis
@@ -76,7 +85,8 @@ const FindDreamJob = () => {
             setAnalysisProgress(progress);
             if (progress >= 100) {
                 clearInterval(interval);
-                setTimeout(() => setStep(4), 500);
+                // Redirect to Payment Step instead of Result
+                setTimeout(() => setStep(3.5), 500);
             }
         }, 30);
     };
@@ -106,15 +116,22 @@ const FindDreamJob = () => {
                 </motion.div>
 
                 {/* Progress Indicators */}
-                {step < 5 && (
+                {step < 4 && (
                     <div className="flex justify-center mb-10">
                         <div className="flex items-center space-x-4">
                             {[1, 2, 3, 4].map((i) => (
                                 <div key={i} className={`flex items-center ${i !== 4 ? 'after:content-[""] after:h-[2px] after:w-12 after:bg-gray-200 after:ml-4' : ''}`}>
-                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-colors ${step >= i
-                                        ? 'bg-accent-orange text-white shadow-lg shadow-accent-orange/30'
-                                        : 'bg-white text-gray-400 border border-gray-200'
-                                        }`}>
+                                    <div
+                                        onClick={() => {
+                                            if (step > i) {
+                                                setStep(i);
+                                            }
+                                        }}
+                                        className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${step >= i
+                                                ? 'bg-accent-orange text-white shadow-lg shadow-accent-orange/30'
+                                                : 'bg-white text-gray-400 border border-gray-200'
+                                            } ${step > i ? 'cursor-pointer hover:bg-orange-600' : 'cursor-default'}`}
+                                    >
                                         {step > i ? <CheckCircle size={20} /> : i}
                                     </div>
                                 </div>
@@ -530,6 +547,68 @@ const FindDreamJob = () => {
                         </motion.div>
                     )}
 
+
+
+                    {/* Step 3.5: Payment Gateway */}
+                    {step === 3.5 && (
+                        <motion.div
+                            key="step3.5"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden"
+                        >
+                            {/* Background Decor */}
+                            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent-orange to-red-500" />
+
+                            <div className="w-20 h-20 bg-orange-100 text-accent-orange rounded-full flex items-center justify-center mx-auto mb-6">
+                                <Lock size={32} />
+                            </div>
+
+                            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-2">Unlock Your Report</h2>
+                            <p className="text-gray-500 mb-8">Get detailed career insights, ATS score, and a personalized learning path.</p>
+
+                            <div className="bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-6 mb-8 border border-gray-100 dark:border-gray-600">
+                                <div className="flex justify-between items-center mb-2">
+                                    <span className="text-gray-600 dark:text-gray-300 font-medium">Career Readiness Report</span>
+                                    <span className="text-gray-900 dark:text-white font-bold">₹999</span>
+                                </div>
+                                <div className="flex justify-between items-center mb-4">
+                                    <span className="text-accent-orange font-medium">Limited Time Offer</span>
+                                    <span className="text-accent-orange font-bold">- ₹990</span>
+                                </div>
+                                <div className="border-t border-gray-200 dark:border-gray-600 pt-4 flex justify-between items-center text-xl">
+                                    <span className="font-bold text-gray-900 dark:text-white">Total to Pay</span>
+                                    <span className="font-extrabold text-gray-900 dark:text-white">₹9</span>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={() => {
+                                    setLoading(true);
+                                    setTimeout(() => {
+                                        setLoading(false);
+                                        setStep(4);
+                                    }, 1500); // Simulate payment processing
+                                }}
+                                disabled={loading}
+                                className="w-full bg-black text-white hover:bg-gray-800 py-4 rounded-xl font-bold text-lg shadow-xl shadow-gray-200 dark:shadow-none transition-all flex items-center justify-center gap-2"
+                            >
+                                {loading ? (
+                                    <>Processing...</>
+                                ) : (
+                                    <>
+                                        <CreditCard size={20} /> Pay ₹9 Securely
+                                    </>
+                                )}
+                            </button>
+
+                            <p className="text-xs text-gray-400 mt-4 flex items-center justify-center gap-1">
+                                <Lock size={12} /> 100% Secure Payment via Razorpay
+                            </p>
+                        </motion.div>
+                    )}
+
                     {/* Step 4: Results & Recommendations */}
                     {step === 4 && (
                         <motion.div
@@ -627,7 +706,7 @@ const FindDreamJob = () => {
 
                 </AnimatePresence>
             </div>
-        </div>
+        </div >
     );
 };
 
