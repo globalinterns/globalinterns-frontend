@@ -47,6 +47,7 @@ import BiotechnologyProgram from './pages/BiotechnologyProgram';
 import PsychologyProgram from './pages/PsychologyProgram';
 
 import MedicalCodingProgram from './pages/MedicalCodingProgram';
+import FindDreamJob from './pages/FindDreamJob';
 
 function App() {
     return (
@@ -80,6 +81,7 @@ function App() {
                     <Route path="/program/industrial-biotechnology" element={<BiotechnologyProgram />} />
                     <Route path="/program/psychology" element={<PsychologyProgram />} />
                     <Route path="/program/medical-coding" element={<MedicalCodingProgram />} />
+                    <Route path="/find-dream-job" element={<FindDreamJob />} />
                 </Routes>
                 <Footer />
             </div>

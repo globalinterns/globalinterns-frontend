@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X, Sparkles } from 'lucide-react';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -95,7 +95,7 @@ const Navbar = () => {
     const navItems = [
         { label: 'Career Starter', id: 'career-starter', type: 'dropdown' },
         { label: 'Go Global', path: '/global', type: 'link' },
-        { label: 'ATS Score', path: '/resume-check', type: 'link' },
+        { label: 'Find Your Dream Job', path: '/find-dream-job', type: 'link' },
         { label: 'How It Works', id: 'how-it-works', type: 'scroll' },
         { label: 'Campus Ambassador', path: '/campus-ambassador', type: 'link' },
     ];
@@ -125,63 +125,88 @@ const Navbar = () => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-10">
-                        {navItems.map((item, index) => (
-                            <div
-                                key={index}
-                                onMouseEnter={() => item.type === 'dropdown' && setHoveredItem(item.label)}
-                                onMouseLeave={() => setHoveredItem(null)}
-                                className="relative py-6" // Added padding to bridge gap to dropdown
-                            >
-                                <button
-                                    onClick={() => handleNavClick(item)}
-                                    className="flex items-center gap-1 text-text-secondary font-medium transition-colors hover:text-text-primary group"
-                                >
-                                    {item.label}
-                                    {item.type === 'dropdown' && (
-                                        <ChevronDown
-                                            className={`w-4 h-4 transition-transform duration-200 ${hoveredItem === item.label ? 'rotate-180' : ''}`}
-                                        />
-                                    )}
-                                    <span className={`absolute left-0 bottom-5 h-[2px] transition-all group-hover:w-full ${(item.path === location.pathname || (item.label === 'Career Starter' && location.pathname.includes('/program/'))) ? 'w-full bg-accent-orange' : 'w-0 bg-accent-orange'}`} />
-                                </button>
+                        {navItems.map((item, index) => {
+                            if (item.label === 'Find Your Dream Job') {
+                                return (
+                                    <div key={index} className="relative py-6 flex items-center">
+                                        <button
+                                            onClick={() => handleNavClick(item)}
+                                            className="relative group overflow-hidden px-5 py-2 rounded-full bg-gradient-to-r from-orange-50 to-orange-100 border border-orange-200 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/10 hover:border-orange-300 hover:-translate-y-0.5"
+                                        >
+                                            <div className="absolute inset-0 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                            <div className="absolute top-0 left-0 w-[150%] h-full bg-gradient-to-r from-transparent via-white/60 to-transparent -skew-x-12 -translate-x-full group-hover:animate-[shimmer_1s_infinite]" />
 
-                                {/* Dropdown Menu */}
-                                <AnimatePresence>
-                                    {item.type === 'dropdown' && hoveredItem === item.label && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 10 }}
-                                            transition={{ duration: 0.2 }}
-                                            className="absolute left-1/2 -translate-x-1/2 top-full mt-0 
+                                            <span className="relative flex items-center gap-2 text-sm font-bold text-accent-orange tracking-wide">
+                                                <Sparkles className="w-4 h-4 animate-pulse" />
+                                                {item.label}
+                                                <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                                                </span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                );
+                            }
+
+                            return (
+                                <div
+                                    key={index}
+                                    onMouseEnter={() => item.type === 'dropdown' && setHoveredItem(item.label)}
+                                    onMouseLeave={() => setHoveredItem(null)}
+                                    className="relative py-6"
+                                >
+                                    <button
+                                        onClick={() => handleNavClick(item)}
+                                        className="flex items-center gap-1 text-text-secondary font-medium transition-colors hover:text-text-primary group"
+                                    >
+                                        {item.label}
+                                        {item.type === 'dropdown' && (
+                                            <ChevronDown
+                                                className={`w-4 h-4 transition-transform duration-200 ${hoveredItem === item.label ? 'rotate-180' : ''}`}
+                                            />
+                                        )}
+                                        <span className={`absolute left-0 bottom-5 h-[2px] transition-all group-hover:w-full ${(item.path === location.pathname || (item.label === 'Career Starter' && location.pathname.includes('/program/'))) ? 'w-full bg-accent-orange' : 'w-0 bg-accent-orange'}`} />
+                                    </button>
+
+                                    {/* Dropdown Menu */}
+                                    <AnimatePresence>
+                                        {item.type === 'dropdown' && hoveredItem === item.label && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 10 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="absolute left-1/2 -translate-x-1/2 top-full mt-0 
                                             w-[900px] bg-white/95 backdrop-blur-xl border border-border rounded-3xl shadow-xl p-8 
                                             grid grid-cols-4 gap-8 z-50 origin-top"
-                                        >
-                                            {programCategories.map((category, idx) => (
-                                                <div key={idx} className="space-y-4">
-                                                    <h3 className="text-sm font-bold text-accent-orange uppercase tracking-wider border-b border-border pb-2">
-                                                        {category.title}
-                                                    </h3>
-                                                    <ul className="space-y-3">
-                                                        {category.items.map((subItem, subIdx) => (
-                                                            <li key={subIdx}>
-                                                                <button
-                                                                    onClick={() => handleProgramClick(subItem.path)}
-                                                                    className={`text-sm text-text-secondary hover:text-text-primary hover:font-medium transition-all text-left block w-full
+                                            >
+                                                {programCategories.map((category, idx) => (
+                                                    <div key={idx} className="space-y-4">
+                                                        <h3 className="text-sm font-bold text-accent-orange uppercase tracking-wider border-b border-border pb-2">
+                                                            {category.title}
+                                                        </h3>
+                                                        <ul className="space-y-3">
+                                                            {category.items.map((subItem, subIdx) => (
+                                                                <li key={subIdx}>
+                                                                    <button
+                                                                        onClick={() => handleProgramClick(subItem.path)}
+                                                                        className={`text-sm text-text-secondary hover:text-text-primary hover:font-medium transition-all text-left block w-full
                                                                     ${location.pathname === subItem.path ? 'text-accent-orange font-medium' : ''}`}
-                                                                >
-                                                                    {subItem.name}
-                                                                </button>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            ))}
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
-                        ))}
+                                                                    >
+                                                                        {subItem.name}
+                                                                    </button>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                ))}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            );
+                        })}
                     </div>
 
                     {/* CTA & Mobile Toggle */}
