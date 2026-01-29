@@ -93,7 +93,7 @@ const Navbar = () => {
 
     const navItems = [
         { label: 'Career Starter', id: 'career-starter', type: 'dropdown' },
-        { label: 'Global', path: '/global', type: 'link' },
+        { label: 'Go Global', path: '/global', type: 'link' },
         { label: 'How It Works', id: 'how-it-works', type: 'scroll' },
         { label: 'Certificate', id: 'certificate', type: 'scroll' },
         { label: 'Campus Ambassador', path: '/campus-ambassador', type: 'link' },
