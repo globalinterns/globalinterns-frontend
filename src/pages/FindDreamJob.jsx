@@ -128,8 +128,8 @@ const FindDreamJob = () => {
                                             }
                                         }}
                                         className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${step >= i
-                                                ? 'bg-accent-orange text-white shadow-lg shadow-accent-orange/30'
-                                                : 'bg-white text-gray-400 border border-gray-200'
+                                            ? 'bg-accent-orange text-white shadow-lg shadow-accent-orange/30'
+                                            : 'bg-white text-gray-400 border border-gray-200'
                                             } ${step > i ? 'cursor-pointer hover:bg-orange-600' : 'cursor-default'}`}
                                     >
                                         {step > i ? <CheckCircle size={20} /> : i}
@@ -586,10 +586,12 @@ const FindDreamJob = () => {
                             <button
                                 onClick={() => {
                                     setLoading(true);
+                                    window.open('https://payit.cc/SrSi0UD254', '_blank');
+                                    // Simulate verification/waiting for user to return
                                     setTimeout(() => {
                                         setLoading(false);
                                         setStep(4);
-                                    }, 1500); // Simulate payment processing
+                                    }, 5000);
                                 }}
                                 disabled={loading}
                                 className="w-full bg-black text-white hover:bg-gray-800 py-4 rounded-xl font-bold text-lg shadow-xl shadow-gray-200 dark:shadow-none transition-all flex items-center justify-center gap-2"
