@@ -1,11 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [hoveredItem, setHoveredItem] = useState(null);
     const location = useLocation();
     const navigate = useNavigate();
+
+    // Grouping the user's list into categories for the dropdown
+    const programCategories = [
+        {
+            title: 'Technology',
+            items: [
+                { name: 'Artificial Intelligence', path: '/program/artificial-intelligence' },
+                { name: 'Machine Learning', path: '/program/machine-learning' },
+                { name: 'Data Science', path: '/program/data-science' },
+                { name: 'Web Development', path: '/program/web-development' }, // Linked specific page
+                { name: 'Android Development', path: '/program/android-development' },
+                { name: 'Cyber Security', path: '/program/cyber-security' },
+                { name: 'Java', path: '/program/java' },
+                { name: 'Python', path: '/program/python' }
+            ]
+        },
+        {
+            title: 'Engineering',
+            items: [
+                { name: 'Embedded System', path: '/program/embedded-systems' },
+                { name: 'Internet of Things', path: '/program/internet-of-things' },
+                { name: 'Hybrid Electric Vehicle', path: '/program/hybrid-electric-vehicle' },
+                { name: 'Robotics', path: '/program/robotics' },
+                { name: 'Construction Planning', path: '/program/construction-planning' },
+                { name: 'IC Engine Design', path: '/program/ic-engine-design' }
+            ]
+        },
+        {
+            title: 'Business',
+            items: [
+                { name: 'Human Resources', path: '/program/human-resources' },
+                { name: 'Finance', path: '/program/finance' },
+                { name: 'Sales & Marketing', path: '/program/sales-marketing' },
+                { name: 'Digital Marketing', path: '/program/digital-marketing' },
+                { name: 'Stock Market', path: '/program/stock-market' }
+            ]
+        },
+        {
+            title: 'Life Sciences',
+            items: [
+                { name: 'Industrial Biotechnology', path: '/program/industrial-biotechnology' },
+                { name: 'Psychology', path: '/program/psychology' },
+                { name: 'Medical Coding', path: '/program/medical-coding' }
+            ]
+        }
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -16,10 +64,12 @@ const Navbar = () => {
     }, []);
 
     const handleNavClick = (item) => {
+        if (item.type === 'dropdown') return; // Do nothing on click for dropdown (handled by hover)
+
         if (item.type === 'link') {
             navigate(item.path);
             window.scrollTo(0, 0);
-        } else {
+        } else if (item.type === 'scroll') {
             if (location.pathname === '/') {
                 const element = document.getElementById(item.id);
                 if (element) {
@@ -31,8 +81,16 @@ const Navbar = () => {
         }
     };
 
+    const handleProgramClick = (path) => {
+        if (path && path !== '#') {
+            navigate(path);
+            window.scrollTo(0, 0);
+        }
+        setHoveredItem(null);
+    };
+
     const navItems = [
-        { label: 'Programs', id: 'programs', type: 'scroll' },
+        { label: 'Programs', id: 'programs', type: 'dropdown' },
         { label: 'How It Works', id: 'how-it-works', type: 'scroll' },
         { label: 'Certificate', id: 'certificate', type: 'scroll' },
         { label: 'Campus Ambassador', path: '/campus-ambassador', type: 'link' },
@@ -64,14 +122,61 @@ const Navbar = () => {
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-10">
                         {navItems.map((item, index) => (
-                            <button
+                            <div
                                 key={index}
-                                onClick={() => handleNavClick(item)}
-                                className="relative text-text-secondary font-medium transition-colors hover:text-text-primary group"
+                                onMouseEnter={() => item.type === 'dropdown' && setHoveredItem(item.label)}
+                                onMouseLeave={() => setHoveredItem(null)}
+                                className="relative py-6" // Added padding to bridge gap to dropdown
                             >
-                                {item.label}
-                                <span className={`absolute left-0 -bottom-1 h-[2px] transition-all group-hover:w-full ${location.pathname === item.path ? 'w-full bg-accent-orange' : 'w-0 bg-accent-orange'}`} />
-                            </button>
+                                <button
+                                    onClick={() => handleNavClick(item)}
+                                    className="flex items-center gap-1 text-text-secondary font-medium transition-colors hover:text-text-primary group"
+                                >
+                                    {item.label}
+                                    {item.type === 'dropdown' && (
+                                        <ChevronDown
+                                            className={`w-4 h-4 transition-transform duration-200 ${hoveredItem === item.label ? 'rotate-180' : ''}`}
+                                        />
+                                    )}
+                                    <span className={`absolute left-0 bottom-5 h-[2px] transition-all group-hover:w-full ${(item.path === location.pathname || (item.label === 'Programs' && location.pathname.includes('/program/'))) ? 'w-full bg-accent-orange' : 'w-0 bg-accent-orange'}`} />
+                                </button>
+
+                                {/* Dropdown Menu */}
+                                <AnimatePresence>
+                                    {item.type === 'dropdown' && hoveredItem === item.label && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 10 }}
+                                            transition={{ duration: 0.2 }}
+                                            className="absolute left-1/2 -translate-x-1/2 top-full mt-0 
+                                            w-[900px] bg-white/95 backdrop-blur-xl border border-border rounded-3xl shadow-xl p-8 
+                                            grid grid-cols-4 gap-8 z-50 origin-top"
+                                        >
+                                            {programCategories.map((category, idx) => (
+                                                <div key={idx} className="space-y-4">
+                                                    <h3 className="text-sm font-bold text-accent-orange uppercase tracking-wider border-b border-border pb-2">
+                                                        {category.title}
+                                                    </h3>
+                                                    <ul className="space-y-3">
+                                                        {category.items.map((subItem, subIdx) => (
+                                                            <li key={subIdx}>
+                                                                <button
+                                                                    onClick={() => handleProgramClick(subItem.path)}
+                                                                    className={`text-sm text-text-secondary hover:text-text-primary hover:font-medium transition-all text-left block w-full
+                                                                    ${location.pathname === subItem.path ? 'text-accent-orange font-medium' : ''}`}
+                                                                >
+                                                                    {subItem.name}
+                                                                </button>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            ))}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
                         ))}
                     </div>
 

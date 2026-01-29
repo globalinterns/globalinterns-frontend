@@ -1,11 +1,19 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Linkedin, Twitter, Instagram, Mail } from 'lucide-react';
 
 const Footer = () => {
-    const scrollToSection = (id) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleNavClick = (id) => {
+        if (location.pathname !== '/') {
+            navigate('/', { state: { scrollTo: id } });
+        } else {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     };
 
@@ -34,7 +42,7 @@ const Footer = () => {
                         <ul className="space-y-2">
                             <li>
                                 <button
-                                    onClick={() => scrollToSection('programs')}
+                                    onClick={() => handleNavClick('programs')}
                                     className="text-text-secondary hover:text-accent-orange transition-colors text-sm"
                                 >
                                     Programs
@@ -42,7 +50,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <button
-                                    onClick={() => scrollToSection('how-it-works')}
+                                    onClick={() => handleNavClick('how-it-works')}
                                     className="text-text-secondary hover:text-accent-orange transition-colors text-sm"
                                 >
                                     How It Works
@@ -50,10 +58,21 @@ const Footer = () => {
                             </li>
                             <li>
                                 <button
-                                    onClick={() => scrollToSection('certificate')}
+                                    onClick={() => handleNavClick('certificate')}
                                     className="text-text-secondary hover:text-accent-orange transition-colors text-sm"
                                 >
                                     Certificate
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    onClick={() => {
+                                        navigate('/campus-ambassador');
+                                        window.scrollTo(0, 0);
+                                    }}
+                                    className="text-text-secondary hover:text-accent-orange transition-colors text-sm font-medium"
+                                >
+                                    Campus Ambassador
                                 </button>
                             </li>
                         </ul>
