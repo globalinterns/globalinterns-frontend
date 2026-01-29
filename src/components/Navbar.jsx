@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [hoveredItem, setHoveredItem] = useState(null);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [mobileCategoryOpen, setMobileCategoryOpen] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -90,7 +92,8 @@ const Navbar = () => {
     };
 
     const navItems = [
-        { label: 'Programs', id: 'programs', type: 'dropdown' },
+        { label: 'Career Starter', id: 'career-starter', type: 'dropdown' },
+        { label: 'Global', path: '/global', type: 'link' },
         { label: 'How It Works', id: 'how-it-works', type: 'scroll' },
         { label: 'Certificate', id: 'certificate', type: 'scroll' },
         { label: 'Campus Ambassador', path: '/campus-ambassador', type: 'link' },
@@ -138,7 +141,7 @@ const Navbar = () => {
                                             className={`w-4 h-4 transition-transform duration-200 ${hoveredItem === item.label ? 'rotate-180' : ''}`}
                                         />
                                     )}
-                                    <span className={`absolute left-0 bottom-5 h-[2px] transition-all group-hover:w-full ${(item.path === location.pathname || (item.label === 'Programs' && location.pathname.includes('/program/'))) ? 'w-full bg-accent-orange' : 'w-0 bg-accent-orange'}`} />
+                                    <span className={`absolute left-0 bottom-5 h-[2px] transition-all group-hover:w-full ${(item.path === location.pathname || (item.label === 'Career Starter' && location.pathname.includes('/program/'))) ? 'w-full bg-accent-orange' : 'w-0 bg-accent-orange'}`} />
                                 </button>
 
                                 {/* Dropdown Menu */}
@@ -180,19 +183,101 @@ const Navbar = () => {
                         ))}
                     </div>
 
-                    {/* CTA */}
+                    {/* CTA & Mobile Toggle */}
                     <div className="flex items-center gap-3">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => handleNavClick({ id: 'apply', type: 'scroll' })}
-                            className="bg-accent-orange hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl shadow-md shadow-accent-orange/30 transition-all"
+                            className="bg-accent-orange hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-xl shadow-md shadow-accent-orange/30 transition-all hidden sm:block"
                         >
                             Apply Now
                         </motion.button>
+
+                        <button
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="md:hidden p-2 text-text-primary hover:bg-gray-100 rounded-lg transition-colors"
+                        >
+                            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
                     </div>
                 </div>
             </div>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="md:hidden bg-white border-b border-border shadow-2xl overflow-hidden absolute top-full left-0 right-0 max-h-[85vh] overflow-y-auto"
+                    >
+                        <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
+                            {navItems.map((item, index) => (
+                                <div key={index} className="border-b border-gray-100 last:border-0 pb-2 last:pb-0">
+                                    {item.type === 'dropdown' ? (
+                                        <div className="space-y-2">
+                                            <button
+                                                onClick={() => setMobileCategoryOpen(mobileCategoryOpen === item.label ? '' : item.label)}
+                                                className="flex items-center justify-between w-full text-lg font-medium text-text-primary py-2"
+                                            >
+                                                {item.label}
+                                                <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${mobileCategoryOpen === item.label ? 'rotate-180' : ''}`} />
+                                            </button>
+
+                                            <AnimatePresence>
+                                                {mobileCategoryOpen === item.label && (
+                                                    <motion.div
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: 'auto', opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        className="space-y-6 pl-4 pb-4"
+                                                    >
+                                                        {programCategories.map((cat, i) => (
+                                                            <div key={i} className="space-y-3">
+                                                                <div className="text-xs font-bold text-accent-orange uppercase tracking-wider">
+                                                                    {cat.title}
+                                                                </div>
+                                                                <div className="grid grid-cols-1 gap-2 border-l-2 border-gray-100 pl-3">
+                                                                    {cat.items.map((sub, j) => (
+                                                                        <button
+                                                                            key={j}
+                                                                            onClick={() => handleProgramClick(sub.path)}
+                                                                            className="text-sm text-text-secondary hover:text-text-primary text-left py-1"
+                                                                        >
+                                                                            {sub.name}
+                                                                        </button>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                    ) : (
+                                        <button
+                                            onClick={() => handleNavClick(item)}
+                                            className="block w-full text-left text-lg font-medium text-text-primary py-2 hover:text-accent-orange transition-colors"
+                                        >
+                                            {item.label}
+                                        </button>
+                                    )}
+                                </div>
+                            ))}
+                            <div className="pt-4 pb-8">
+                                <button
+                                    onClick={() => handleNavClick({ id: 'apply', type: 'scroll' })}
+                                    className="w-full bg-accent-orange text-white font-bold py-4 rounded-xl shadow-lg shadow-accent-orange/20"
+                                >
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.nav>
     );
 };
