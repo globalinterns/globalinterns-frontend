@@ -140,6 +140,7 @@ const ApplyForm = () => {
         email: '',
         phone: '',
         college: '',
+        programOfInterest: 'Artificial Intelligence',
         reason: ''
     });
     const [status, setStatus] = useState('idle'); // idle, submitting, success, error
@@ -156,7 +157,7 @@ const ApplyForm = () => {
         setErrorMessage('');
 
         try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbwZh60W_kXMeIIh-Bs2WSwRIWDTD-rUC5w2aK2qKht6sf-_IZxmwixCjyv93snOq-YvjA/exec', {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbxtwkZEOkWx-eAoVh_KKITiDYsrM6xNAxPgdY_8A8zE7XsR-ghe4cLHwcy6KOktt-HhtA/exec', {
                 method: 'POST',
                 // Using text/plain prevents the browser from sending a preflight OPTIONS request
                 // which Google Apps Script doesn't handle. The script can still parse the JSON body.
@@ -172,7 +173,7 @@ const ApplyForm = () => {
 
             if (result.result === 'success') {
                 setStatus('success');
-                setFormData({ fullName: '', email: '', phone: '', college: '', reason: '' });
+                setFormData({ fullName: '', email: '', phone: '', college: '', programOfInterest: 'Artificial Intelligence', reason: '' });
                 // Optional: Reset status after a few seconds
                 setTimeout(() => setStatus('idle'), 5000);
             } else {
