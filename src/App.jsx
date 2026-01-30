@@ -28,6 +28,10 @@ import MicrosoftAzureDataFundamentalsProgram from './pages/MicrosoftAzureDataFun
 import MetaDigitalMarketingAssociateProgram from './pages/MetaDigitalMarketingAssociateProgram';
 import GlobalMentorshipProgram from './pages/GlobalMentorshipProgram';
 import JavaProgram from './pages/JavaProgram';
+import AboutUs from './pages/AboutUs';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
+import RefundPolicy from './pages/RefundPolicy';
 
 import PythonProgram from './pages/PythonProgram';
 
@@ -93,6 +97,10 @@ function App() {
                     <Route path="/program/internet-of-things" element={<IoTProgram />} />
                     <Route path="/program/hybrid-electric-vehicle" element={<HybridVehiclesProgram />} />
                     <Route path="/program/robotics" element={<RoboticsProgram />} />
+                    <Route path="/about-us" element={<AboutUs />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+                    <Route path="/refund-policy" element={<RefundPolicy />} />
                     <Route path="/program/construction-planning" element={<ConstructionPlanningProgram />} />
                     <Route path="/program/ic-engine-design" element={<ICEngineDesignProgram />} />
                     <Route path="/program/human-resources" element={<HumanResourcesProgram />} />

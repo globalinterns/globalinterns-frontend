@@ -18,106 +18,108 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-primary-bg border-t border-border py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                    {/* Logo & Tagline */}
-                    <div className="col-span-1 md:col-span-2">
-                        <div className="mb-4">
+        <footer className="bg-primary-bg border-t border-border pt-16 pb-8">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                    {/* Brand Column */}
+                    <div className="lg:col-span-1">
+                        <div className="mb-6">
                             <img
                                 src="/global-interns-logo.png"
                                 alt="Global Interns"
-                                className="h-12 w-auto"
+                                className="h-10 w-auto"
                             />
                         </div>
-                        <p className="text-text-secondary text-sm leading-relaxed max-w-md">
+                        <p className="text-gray-500 text-sm leading-relaxed mb-6">
                             Empowering the next generation of professionals through
-                            virtual internships with global reach.
+                            world-class virtual internships and mentorships.
                         </p>
+                        <div className="flex gap-4">
+                            {[
+                                { icon: Linkedin, href: "https://www.linkedin.com/company/globall-internn/" },
+                                { icon: Instagram, href: "https://www.instagram.com/globallnterns/" },
+                                { icon: Mail, href: "mailto:contact@globalinterns.com" }
+                            ].map((social, idx) => (
+                                <a
+                                    key={idx}
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-10 h-10 rounded-full bg-gray-50 hover:bg-accent-orange hover:text-white text-gray-400 flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md"
+                                >
+                                    <social.icon className="w-4 h-4" />
+                                </a>
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Quick Links */}
+                    {/* Company Links */}
                     <div>
-                        <h3 className="font-semibold text-text-primary mb-4">Quick Links</h3>
-                        <ul className="space-y-2">
+                        <h3 className="font-bold text-gray-900 mb-6 text-lg">Company</h3>
+                        <ul className="space-y-4">
                             <li>
-                                <button
-                                    onClick={() => handleNavClick('programs')}
-                                    className="text-text-secondary hover:text-accent-orange transition-colors text-sm"
-                                >
-                                    Programs
+                                <button onClick={() => { navigate('/about-us'); window.scrollTo(0, 0); }} className="text-gray-500 hover:text-accent-orange transition-colors text-sm">
+                                    About Us
                                 </button>
                             </li>
                             <li>
-                                <button
-                                    onClick={() => handleNavClick('how-it-works')}
-                                    className="text-text-secondary hover:text-accent-orange transition-colors text-sm"
-                                >
-                                    How It Works
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    onClick={() => {
-                                        navigate('/campus-ambassador');
-                                        window.scrollTo(0, 0);
-                                    }}
-                                    className="text-text-secondary hover:text-accent-orange transition-colors text-sm font-medium"
-                                >
+                                <button onClick={() => { navigate('/campus-ambassador'); window.scrollTo(0, 0); }} className="text-gray-500 hover:text-accent-orange transition-colors text-sm">
                                     Campus Ambassador
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={() => { navigate('/find-dream-job'); window.scrollTo(0, 0); }} className="text-gray-500 hover:text-accent-orange transition-colors text-sm">
+                                    Find Your Dream Job
                                 </button>
                             </li>
                         </ul>
                     </div>
 
-                    {/* Contact */}
+                    {/* Legal Links */}
                     <div>
-                        <h3 className="font-semibold text-text-primary mb-4">Connect</h3>
-                        <div className="flex gap-3">
-                            <a
-                                href="https://www.linkedin.com/company/globall-internn/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-9 h-9 bg-primary-secondary hover:bg-accent-orange/10 rounded-lg flex items-center justify-center transition-colors group"
-                            >
-                                <Linkedin className="w-4 h-4 text-text-secondary group-hover:text-accent-orange" />
-                            </a>
-                            <a
-                                href="#"
-                                className="w-9 h-9 bg-primary-secondary hover:bg-accent-orange/10 rounded-lg flex items-center justify-center transition-colors group"
-                            >
-                                <Twitter className="w-4 h-4 text-text-secondary group-hover:text-accent-orange" />
-                            </a>
-                            <a
-                                href="#"
-                                className="w-9 h-9 bg-primary-secondary hover:bg-accent-orange/10 rounded-lg flex items-center justify-center transition-colors group"
-                            >
-                                <Instagram className="w-4 h-4 text-text-secondary group-hover:text-accent-orange" />
-                            </a>
-                            <a
-                                href="mailto:contact@globalinterns.com"
-                                className="w-9 h-9 bg-primary-secondary hover:bg-accent-orange/10 rounded-lg flex items-center justify-center transition-colors group"
-                            >
-                                <Mail className="w-4 h-4 text-text-secondary group-hover:text-accent-orange" />
-                            </a>
-                        </div>
+                        <h3 className="font-bold text-gray-900 mb-6 text-lg">Legal</h3>
+                        <ul className="space-y-4">
+                            <li>
+                                <button onClick={() => { navigate('/privacy-policy'); window.scrollTo(0, 0); }} className="text-gray-500 hover:text-accent-orange transition-colors text-sm">
+                                    Privacy Policy
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={() => { navigate('/terms-and-conditions'); window.scrollTo(0, 0); }} className="text-gray-500 hover:text-accent-orange transition-colors text-sm">
+                                    Terms & Conditions
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={() => { navigate('/refund-policy'); window.scrollTo(0, 0); }} className="text-gray-500 hover:text-accent-orange transition-colors text-sm">
+                                    Refund Policy
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Contact Info */}
+                    <div>
+                        <h3 className="font-bold text-gray-900 mb-6 text-lg">Get in Touch</h3>
+                        <ul className="space-y-4 text-sm text-gray-500">
+                            <li className="flex items-start gap-3">
+                                <Mail className="w-5 h-5 text-accent-orange mt-0.5" />
+                                <span>contact@globalinterns.com</span>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-bold">LIVE</span>
+                                <span>Support Available 24/7</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="pt-8 border-t border-border">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p className="text-sm text-text-secondary">
-                            © 2026 Global Interns. All rights reserved.
-                        </p>
-                        <div className="flex gap-6">
-                            <a href="#" className="text-sm text-text-secondary hover:text-accent-orange transition-colors">
-                                Privacy Policy
-                            </a>
-                            <a href="#" className="text-sm text-text-secondary hover:text-accent-orange transition-colors">
-                                Terms of Service
-                            </a>
-                        </div>
+                <div className="pt-8 border-t border-gray-100 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-sm text-gray-400">
+                        © {new Date().getFullYear()} Global Interns. All rights reserved.
+                    </p>
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                        <span className="w-2 h-2 rounded-full bg-green-400"></span>
+                        All Systems Operational
                     </div>
                 </div>
             </div>
