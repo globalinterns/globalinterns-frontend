@@ -21,6 +21,12 @@ import AndroidDevelopmentProgram from './pages/AndroidDevelopmentProgram';
 import CyberSecurityProgram from './pages/CyberSecurityProgram';
 
 import JavaFundamentalsProgram from './pages/JavaFundamentalsProgram';
+import IntroductionToCloudProgram from './pages/IntroductionToCloudProgram';
+import MicrosoftAzureAIFundamentalsProgram from './pages/MicrosoftAzureAIFundamentalsProgram';
+import MicrosoftAzureCloudFundamentalsProgram from './pages/MicrosoftAzureCloudFundamentalsProgram';
+import MicrosoftAzureDataFundamentalsProgram from './pages/MicrosoftAzureDataFundamentalsProgram';
+import MetaDigitalMarketingAssociateProgram from './pages/MetaDigitalMarketingAssociateProgram';
+import GlobalMentorshipProgram from './pages/GlobalMentorshipProgram';
 import JavaProgram from './pages/JavaProgram';
 
 import PythonProgram from './pages/PythonProgram';
@@ -73,6 +79,12 @@ function App() {
                     <Route path="/program/data-science" element={<DataScienceProgram />} />
                     <Route path="/program/python-for-data-science" element={<PythonForDataScienceProgram />} />
                     <Route path="/program/java-fundamentals" element={<JavaFundamentalsProgram />} />
+                    <Route path="/program/introduction-to-cloud" element={<IntroductionToCloudProgram />} />
+                    <Route path="/program/microsoft-azure-ai-fundamentals" element={<MicrosoftAzureAIFundamentalsProgram />} />
+                    <Route path="/program/microsoft-azure-cloud-fundamentals" element={<MicrosoftAzureCloudFundamentalsProgram />} />
+                    <Route path="/program/microsoft-azure-data-fundamentals" element={<MicrosoftAzureDataFundamentalsProgram />} />
+                    <Route path="/program/meta-digital-marketing-associate" element={<MetaDigitalMarketingAssociateProgram />} />
+                    <Route path="/program/global-mentorship" element={<GlobalMentorshipProgram />} />
                     <Route path="/program/android-development" element={<AndroidDevelopmentProgram />} />
                     <Route path="/program/cyber-security" element={<CyberSecurityProgram />} />
                     <Route path="/program/java" element={<JavaProgram />} />

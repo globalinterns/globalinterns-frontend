@@ -22,7 +22,7 @@ const ArtificialIntelligenceProgram = () => {
                     <AlumniSection />
                 </div>
                 <div className="lg:col-span-1">
-                    <div className="sticky top-28">
+                    <div className="sticky top-28" id="apply-form">
                         <ApplyForm />
                     </div>
                 </div>
@@ -93,11 +93,17 @@ const HeroSection = () => (
 
                 {/* CTAs */}
                 <div className="flex flex-wrap items-center gap-4">
-                    <button className="inline-flex items-center justify-center rounded-xl bg-accent-orange px-8 py-4 text-base font-semibold text-white shadow-lg shadow-accent-orange/20 transition hover:bg-accent-hover hover:shadow-accent-orange/30">
+                    <button
+                        onClick={() => document.getElementById('apply-form')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="inline-flex items-center justify-center rounded-xl bg-accent-orange px-8 py-4 text-base font-semibold text-white shadow-lg shadow-accent-orange/20 transition hover:bg-accent-hover hover:shadow-accent-orange/30"
+                    >
                         Apply Now
                     </button>
 
-                    <button className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-white/90 backdrop-blur transition hover:bg-white/10">
+                    <button
+                        onClick={() => document.getElementById('apply-form')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-white/90 backdrop-blur transition hover:bg-white/10"
+                    >
                         Download Brochure
                     </button>
                 </div>

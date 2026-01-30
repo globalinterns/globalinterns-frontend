@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ChevronDown, Menu, X, Sparkles } from 'lucide-react';
+import { ChevronDown, Menu, X, Sparkles, ChevronRight } from 'lucide-react';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [hoveredItem, setHoveredItem] = useState(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [mobileCategoryOpen, setMobileCategoryOpen] = useState('');
+    const [activeGlobalTab, setActiveGlobalTab] = useState('IBM'); // State for Go Global tabs
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -61,6 +62,9 @@ const Navbar = () => {
     const goGlobalCategories = [
         {
             title: 'IBM',
+            description: 'Industry-leading certification programs designed by IBM experts.',
+            color: 'bg-[#0530ad]',
+            text: 'text-[#0530ad]',
             items: [
                 { name: 'Introducing AI', path: '/program/introducing-ai', duration: '2-3 Months', status: 'Live' },
                 { name: 'Machine Learning with Python', path: '/program/machine-learning-with-python', duration: '2-3 Months', status: 'Live' },
@@ -68,27 +72,36 @@ const Navbar = () => {
                 { name: 'Data Science', path: '/program/data-science', duration: '2-3 Months', status: 'Live' },
                 { name: 'Python for Data Science', path: '/program/python-for-data-science', duration: '2-3 Months', status: 'Live' },
                 { name: 'Java Fundamentals', path: '/program/java-fundamentals', duration: '2-3 Months', status: 'Live' },
-                { name: 'Introduction to Cloud', path: '#', duration: '2-3 Months', status: 'Live' }
+                { name: 'Introduction to Cloud', path: '/program/introduction-to-cloud', duration: '2-3 Months', status: 'Live' }
             ]
         },
         {
             title: 'Microsoft',
+            description: 'Master cloud and AI with official Microsoft curriculum.',
+            color: 'bg-[#00a4ef]',
+            text: 'text-[#00a4ef]',
             items: [
-                { name: 'Microsoft Azure AI Fundamentals', path: '#', duration: '2-3 Months', status: 'Live' },
-                { name: 'Microsoft Azure Cloud Fundamentals', path: '#', duration: '2-3 Months', status: 'Live' },
-                { name: 'Microsoft Azure Data Fundamentals', path: '#', duration: '2-3 Months' }
+                { name: 'Microsoft Azure AI Fundamentals', path: '/program/microsoft-azure-ai-fundamentals', duration: '2-3 Months', status: 'Live' },
+                { name: 'Microsoft Azure Cloud Fundamentals', path: '/program/microsoft-azure-cloud-fundamentals', duration: '2-3 Months', status: 'Live' },
+                { name: 'Microsoft Azure Data Fundamentals', path: '/program/microsoft-azure-data-fundamentals', duration: '2-3 Months', status: 'Live' }
             ]
         },
         {
             title: 'Meta',
+            description: 'Become a certified digital marketing professional with Meta.',
+            color: 'bg-[#1877f2]',
+            text: 'text-[#1877f2]',
             items: [
-                { name: 'Digital Marketing Associate', path: '#', duration: '2-3 Months', status: 'Live' }
+                { name: 'Digital Marketing Associate', path: '/program/meta-digital-marketing-associate', duration: '2-3 Months', status: 'Live' }
             ]
         },
         {
             title: 'Global Mentor',
+            description: 'Connect with mentors worldwide to accelerate your career.',
+            color: 'bg-gradient-to-r from-orange-400 to-pink-500',
+            text: 'text-orange-600',
             items: [
-                { name: 'Global Mentorship Program', path: '#', duration: 'Ongoing', status: 'Live' }
+                { name: 'Global Mentorship Program', path: '/program/global-mentorship', duration: 'Ongoing', status: 'Live' }
             ]
         }
     ];
@@ -187,7 +200,9 @@ const Navbar = () => {
                             return (
                                 <div
                                     key={index}
-                                    onMouseEnter={() => item.type === 'dropdown' && setHoveredItem(item.label)}
+                                    onMouseEnter={() => {
+                                        if (item.type === 'dropdown') setHoveredItem(item.label);
+                                    }}
                                     onMouseLeave={() => setHoveredItem(null)}
                                     className="relative py-6"
                                 >
@@ -212,76 +227,96 @@ const Navbar = () => {
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, y: 10 }}
                                                 transition={{ duration: 0.2 }}
-                                                className="absolute left-1/2 -translate-x-1/2 top-full mt-0 
-                                            w-[900px] bg-white/95 backdrop-blur-xl border border-border rounded-3xl shadow-xl p-8 
-                                            grid grid-cols-4 gap-8 z-50 origin-top"
+                                                className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 
+                                            bg-white/95 backdrop-blur-xl border border-border rounded-3xl shadow-xl p-8 z-50 origin-top
+                                            ${item.label === 'Go Global' ? 'w-[1000px] flex gap-8' : 'w-[900px] grid grid-cols-4 gap-8'}`}
                                             >
                                                 {item.label === 'Go Global' ? (
-                                                    // Premium Dropdown for Go Global
-                                                    <div className="col-span-4 grid grid-cols-4 gap-6">
-                                                        {goGlobalCategories.map((category, idx) => (
-                                                            <div key={idx} className="space-y-4">
-                                                                <div className="flex items-center gap-2 border-b border-gray-100 pb-2">
-                                                                    <div className={`
-                                                                    w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-xs shadow-md
-                                                                    ${category.title === 'IBM' ? 'bg-[#0530ad]' : ''}
-                                                                    ${category.title === 'Microsoft' ? 'bg-[#00a4ef]' : ''}
-                                                                    ${category.title === 'Meta' ? 'bg-[#1877f2]' : ''}
-                                                                    ${category.title === 'Global Mentor' ? 'bg-gradient-to-r from-orange-400 to-pink-500' : ''}
-                                                                `}>
-                                                                        {category.title.substring(0, 1)}
+                                                    // Premium Sidebar Layout for Go Global
+                                                    <>
+                                                        {/* Sidebar */}
+                                                        <div className="w-64 flex-shrink-0 flex flex-col gap-2 border-r border-gray-100 pr-6">
+                                                            {goGlobalCategories.map((cat, idx) => (
+                                                                <button
+                                                                    key={idx}
+                                                                    onMouseEnter={() => setActiveGlobalTab(cat.title)}
+                                                                    className={`flex items-center justify-between w-full p-3 rounded-xl text-left transition-all duration-300 group
+                                                                    ${activeGlobalTab === cat.title ? 'bg-gray-50 shadow-sm ring-1 ring-gray-100' : 'hover:bg-gray-50/50'}`}
+                                                                >
+                                                                    <div className="flex items-center gap-3">
+                                                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-xs shadow-sm transition-transform duration-300 group-hover:scale-110 ${cat.color}`}>
+                                                                            {cat.title.substring(0, 1)}
+                                                                        </div>
+                                                                        <span className={`font-semibold transition-colors ${activeGlobalTab === cat.title ? 'text-gray-900' : 'text-gray-600'}`}>
+                                                                            {cat.title}
+                                                                        </span>
                                                                     </div>
-                                                                    <h3 className={`text-base font-bold tracking-tight
-                                                                    ${category.title === 'IBM' ? 'text-[#0530ad]' : ''}
-                                                                    ${category.title === 'Microsoft' ? 'text-[#00a4ef]' : ''}
-                                                                    ${category.title === 'Meta' ? 'text-[#1877f2]' : ''}
-                                                                    ${category.title === 'Global Mentor' ? 'text-gray-800' : ''}
-                                                                `}>
-                                                                        {category.title}
-                                                                    </h3>
-                                                                </div>
+                                                                    {activeGlobalTab === cat.title && (
+                                                                        <ChevronRight className="w-4 h-4 text-gray-400" />
+                                                                    )}
+                                                                </button>
+                                                            ))}
+                                                        </div>
 
-                                                                <div className="space-y-3">
-                                                                    {category.items.map((subItem, subIdx) => (
-                                                                        <button
-                                                                            key={subIdx}
-                                                                            onClick={() => handleProgramClick(subItem.path)}
-                                                                            className="w-full text-left group/card"
+                                                        {/* Content Area */}
+                                                        <div className="flex-1">
+                                                            <div className="h-full">
+                                                                {goGlobalCategories.map((cat) => {
+                                                                    if (cat.title !== activeGlobalTab) return null;
+                                                                    return (
+                                                                        <motion.div
+                                                                            key={cat.title}
+                                                                            initial={{ opacity: 0, x: 10 }}
+                                                                            animate={{ opacity: 1, x: 0 }}
+                                                                            transition={{ duration: 0.3 }}
+                                                                            className="h-full flex flex-col"
                                                                         >
-                                                                            <div className="bg-gray-50 hover:bg-white border border-transparent hover:border-gray-200 rounded-xl p-3 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 relative overflow-hidden">
-                                                                                {/* Hover Gradient Background */}
-                                                                                <div className={`absolute inset-0 opacity-0 group-hover/card:opacity-5 transition-opacity duration-300
-                                                                                ${category.title === 'IBM' ? 'bg-[#0530ad]' : ''}
-                                                                                ${category.title === 'Microsoft' ? 'bg-[#00a4ef]' : ''}
-                                                                                ${category.title === 'Meta' ? 'bg-[#1877f2]' : ''}
-                                                                                ${category.title === 'Global Mentor' ? 'bg-orange-500' : ''}
-                                                                            `} />
-
-                                                                                <div className="relative z-10">
-                                                                                    <div className="font-bold text-gray-800 text-sm mb-1 leading-tight group-hover/card:text-black">
-                                                                                        {subItem.name}
-                                                                                    </div>
-                                                                                    <div className="flex flex-wrap items-center gap-2">
-                                                                                        {subItem.duration && (
-                                                                                            <span className="text-[10px] font-medium text-gray-500 bg-white px-2 py-0.5 rounded-md border border-gray-100 shadow-sm">
-                                                                                                {subItem.duration}
-                                                                                            </span>
-                                                                                        )}
-                                                                                        {subItem.status === 'Live' && (
-                                                                                            <span className="flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-md">
-                                                                                                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                                                                                                LIVE
-                                                                                            </span>
-                                                                                        )}
-                                                                                    </div>
-                                                                                </div>
+                                                                            {/* Header */}
+                                                                            <div className="mb-6">
+                                                                                <h3 className={`text-xl font-bold mb-1 ${cat.text}`}>{cat.title} Programs</h3>
+                                                                                <p className="text-sm text-gray-500">{cat.description}</p>
                                                                             </div>
-                                                                        </button>
-                                                                    ))}
-                                                                </div>
+
+                                                                            {/* Grid Items */}
+                                                                            <div className="grid grid-cols-2 gap-4">
+                                                                                {cat.items.map((subItem, subIdx) => (
+                                                                                    <button
+                                                                                        key={subIdx}
+                                                                                        onClick={() => handleProgramClick(subItem.path)}
+                                                                                        className="text-left group/card h-full"
+                                                                                    >
+                                                                                        <div className="bg-white border border-gray-100 hover:border-gray-200 rounded-xl p-4 transition-all duration-300 hover:shadow-md hover:-translate-y-1 relative overflow-hidden h-full flex flex-col justify-between">
+                                                                                            <div className={`absolute inset-0 opacity-0 group-hover/card:opacity-5 transition-opacity duration-300 ${cat.color}`} />
+
+                                                                                            <div>
+                                                                                                <div className="font-bold text-gray-900 text-sm mb-2 group-hover/card:text-black">
+                                                                                                    {subItem.name}
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div className="flex flex-wrap items-center gap-2 mt-2">
+                                                                                                {subItem.duration && (
+                                                                                                    <span className="text-[10px] font-medium text-gray-500 bg-gray-50 px-2 py-1 rounded-md border border-gray-100">
+                                                                                                        {subItem.duration}
+                                                                                                    </span>
+                                                                                                )}
+                                                                                                {subItem.status === 'Live' && (
+                                                                                                    <span className="flex items-center gap-1 text-[10px] font-bold text-green-700 bg-green-50 px-2 py-1 rounded-md border border-green-100">
+                                                                                                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                                                                                                        LIVE
+                                                                                                    </span>
+                                                                                                )}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </button>
+                                                                                ))}
+                                                                            </div>
+                                                                        </motion.div>
+                                                                    );
+                                                                })}
                                                             </div>
-                                                        ))}
-                                                    </div>
+                                                        </div>
+                                                    </>
                                                 ) : (
                                                     // Standard Dropdown for Career Starter
                                                     programCategories.map((category, idx) => (

@@ -2,23 +2,21 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Star, Clock, Calendar, CheckCircle, ChevronDown,
-    Brain, Code, Bot, Briefcase, Award, TrendingUp, Users,
-    BookOpen, Search, ShieldCheck, PenTool, Database, BarChart, FileText, Terminal
+    Users, Globe, MessageSquare, Video, Award, TrendingUp, Lightbulb,
+    BookOpen, Shield, Layers, Code, Briefcase, Zap, Target, Coffee
 } from 'lucide-react';
 
-const PythonForDataScienceProgram = () => {
+const GlobalMentorshipProgram = () => {
     return (
         <div className="pt-20 font-sans text-gray-900 bg-white">
             <HeroSection />
             <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 grid lg:grid-cols-3 gap-12">
                 <div className="lg:col-span-2 space-y-20">
                     <DiscoverSection />
-                    <ToolsSection />
-                    <ProjectsSection />
-                    <SyllabusSection />
-                    <CertificationSection />
+                    <BenefitsSection />
+                    <HowItWorksSection />
                     <PricingSection />
-                    <AlumniSection />
+                    <MentorsSection />
                     <TestimonialsSection />
                 </div>
                 <div className="lg:col-span-1">
@@ -39,12 +37,12 @@ const HeroSection = () => (
         {/* Background image */}
         <div className="absolute inset-0">
             <img
-                src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=2070&q=80"
-                alt="Python for Data Science"
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2070&q=80"
+                alt="Global Mentorship"
                 className="h-full w-full object-cover object-center"
             />
-            {/* Premium overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-slate-900/80 to-slate-950/60" />
+            {/* Premium overlay with Purple tint */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#7c3aed]/80 via-slate-900/90 to-slate-950/60" />
         </div>
 
         {/* Content */}
@@ -58,30 +56,36 @@ const HeroSection = () => (
                 {/* Top meta */}
                 <div className="flex flex-wrap items-center gap-4 mb-8">
                     <span className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-medium text-white/80 backdrop-blur">
-                        Most Trending Course
+                        Global Mentorship Program
                     </span>
 
                     <div className="flex items-center gap-2 text-sm text-white/70">
-                        <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                        <span>Powered by Microsoft & IBM</span>
+                        <Globe className="w-4 h-4 text-amber-400" />
+                        <span>Connect Worldwide</span>
                     </div>
                 </div>
 
                 {/* Heading */}
                 <h1 className="text-4xl lg:text-6xl font-semibold tracking-tight leading-tight mb-6">
-                    Python for Data Science
+                    Accelerate Your Career with Global Mentors
                 </h1>
 
                 {/* Subheading */}
                 <p className="text-lg lg:text-xl text-white/70 leading-relaxed max-w-2xl mb-10">
-                    Global Interns - Microsoft - IBM. Master the foundational programming language of the data world.
+                    Get personalized guidance, career advice, and industry insights from experienced professionals working at top global companies.
                 </p>
 
                 {/* Program facts */}
                 <div className="flex flex-wrap gap-x-10 gap-y-4 mb-12 text-sm text-white/70">
                     <div className="flex items-center gap-3">
-                        <Calendar className="w-5 h-5 text-accent-orange" />
-                        <span>Duration: 2-3 Months</span>
+                        <Clock className="w-5 h-5 text-accent-orange" />
+                        <span>Duration: Ongoing</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <span className="flex items-center gap-1 text-green-400 font-bold bg-green-500/10 px-2 py-0.5 rounded-md border border-green-500/20">
+                            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                            LIVE
+                        </span>
                     </div>
                 </div>
 
@@ -108,22 +112,22 @@ const HeroSection = () => (
 
 const DiscoverSection = () => (
     <section>
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">Discover the IBM Program</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Choose Mentorship?</h2>
         <p className="text-gray-600 leading-relaxed mb-8 text-lg">
-            Wondering what you will receive after completing an IBM-certified course? Here is what awaits you:
+            Mentorship is the cheat code to career success. Bridge the gap between where you are and where you want to be with guidance from those who have already walked the path.
         </p>
 
         <div className="grid gap-6">
             {[
-                { title: 'Training Certificate by Global Interns', desc: 'Earn a recognized certificate validating your skills and course completion.', icon: Award },
-                { title: 'IBM Course Completion Certificate', desc: 'Receive official IBM certification to boost career opportunities and credibility.', icon: Star },
-                { title: 'Internship Certificate by Global Interns', desc: 'Showcase industry experience with a certified internship completion document.', icon: Briefcase },
-                { title: 'Hands-on Experience with 2 Live Projects', desc: 'Work on real-world projects to gain practical, job-ready skills.', icon: Code },
-                { title: 'Expert-Led Training', desc: 'Learn from experienced professionals providing industry-relevant knowledge and insights.', icon: Users },
-                { title: 'Exam Success Toolkit', desc: 'Prepare for IBM exams with test vouchers, LearnKey video courses, and Gmetrix practice tests.', icon: BookOpen },
+                { title: '1-on-1 Guidance', desc: 'Get personalized advice tailored to your specific career goals and challenges.', icon: Users },
+                { title: 'Global Network', desc: 'Connect with mentors from diverse backgrounds and top tech hubs worldwide.', icon: Globe },
+                { title: 'Mock Interviews', desc: 'Practice with real industry questions and get constructive feedback to ace your interviews.', icon: MessageSquare },
+                { title: 'Resume Review', desc: 'Get your resume critiqued by hiring managers to maximize your chances of shortlisting.', icon: Briefcase },
+                { title: 'Skill Roadmap', desc: 'Build a customized learning path to master the skills that are actually in demand.', icon: Lightbulb },
+                { title: 'Career Growth', desc: 'Navigate promotions, salary negotiations, and career pivots with confidence.', icon: TrendingUp },
             ].map((item, idx) => (
                 <div key={idx} className="flex gap-4 p-4 rounded-xl border border-gray-100 bg-white hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
                         <item.icon className="w-6 h-6" />
                     </div>
                     <div>
@@ -136,17 +140,17 @@ const DiscoverSection = () => (
     </section>
 );
 
-const ToolsSection = () => (
+const BenefitsSection = () => (
     <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">Tools and Technologies You'll Learn</h2>
-        <p className="text-gray-600 mb-6">Master the essential Python libraries and tools that define the data science ecosystem, giving you a strong foundation for your career.</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">What You Get</h2>
+        <p className="text-gray-600 mb-6">A holistic mentorship experience designed to accelerate your professional development.</p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-                'Python', 'Jupyter', 'NumPy', 'Pandas',
-                'Matplotlib', 'Seaborn', 'SciPy', 'Anaconda'
+                'Weekly Calls', 'Chat Support', 'Career Planning', 'Code Reviews',
+                'Networking', 'Job Referrals', 'Soft Skills', 'Leadership Tips'
             ].map((tool, idx) => (
                 <div key={idx} className="bg-white border border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center gap-3 hover:border-gray-300 transition-colors aspect-square">
-                    <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 font-bold text-lg">
+                    <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 font-bold text-xs text-center">
                         {tool[0]}
                     </div>
                     <span className="text-sm font-medium text-gray-700 text-center">{tool}</span>
@@ -156,109 +160,39 @@ const ToolsSection = () => (
     </section>
 );
 
-const ProjectsSection = () => (
+const HowItWorksSection = () => (
     <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">Build Your Skills with Hands-On Projects</h2>
-        <p className="text-gray-600 mb-6">Engage with real-world challenges and enhance your skills through hands-on projects that provide practical experience and boost your confidence.</p>
-
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">How It Works</h2>
         <div className="space-y-6">
+            <div className="flex gap-4 p-6 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all bg-white relative">
+                <div className="absolute top-6 left-6 w-0.5 h-full bg-gray-100 -z-10 hidden md:block" />
+                <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 z-10">
+                    <span className="font-bold text-lg">1</span>
+                </div>
+                <div>
+                    <h3 className="font-bold text-lg text-gray-900">Apply & Match</h3>
+                    <p className="text-gray-600 text-sm mt-1">Fill out the application form with your goals. We'll match you with a mentor who aligns with your aspirations.</p>
+                </div>
+            </div>
+
+            <div className="flex gap-4 p-6 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all bg-white relative">
+                <div className="absolute top-6 left-6 w-0.5 h-full bg-gray-100 -z-10 hidden md:block" />
+                <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 z-10">
+                    <span className="font-bold text-lg">2</span>
+                </div>
+                <div>
+                    <h3 className="font-bold text-lg text-gray-900">Initial Consultation</h3>
+                    <p className="text-gray-600 text-sm mt-1">Schedule your first call to discuss your career roadmap and set clear, achievable milestones.</p>
+                </div>
+            </div>
+
             <div className="flex gap-4 p-6 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all bg-white">
-                <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <TrendingUp className="w-6 h-6" />
+                <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 z-10">
+                    <span className="font-bold text-lg">3</span>
                 </div>
                 <div>
-                    <h3 className="font-bold text-lg text-gray-900">Mini Project(1)</h3>
-                    <p className="text-gray-600 text-sm mb-2">Duration: 1 Week</p>
-                    <p className="text-gray-500 text-sm">Analyze historical stock market data using Pandas and visualize trends with Matplotlib.</p>
-                </div>
-            </div>
-
-            <div className="flex gap-4 p-6 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all bg-white">
-                <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Terminal className="w-6 h-6" />
-                </div>
-                <div>
-                    <h3 className="font-bold text-lg text-gray-900">Major Project(1)</h3>
-                    <p className="text-gray-600 text-sm mb-2">Duration: 3 Weeks</p>
-                    <p className="text-gray-500 text-sm">Build a predictive model specifically for Titanic Survival using data preprocessing and basic ML concepts.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-);
-
-const SyllabusSection = () => {
-    const modules = [
-        "Module 1: Python Environment Setup & Basics (2 hours)",
-        "Module 2: Python Data Structures & Control Flow (2 hours)",
-        "Module 3: Functions and Object-Oriented Programming (2 hours)",
-        "Module 4: Introduction to NumPy for Numerical Computing (2 hours)",
-        "Module 5: Data Manipulation with Pandas (2 hours)",
-        "Module 6: Data Visualization using Matplotlib (2 hours)",
-        "Module 7: Statistical Data Visualization with Seaborn (2 hours)",
-        "Module 8: Exploratory Data Analysis (EDA) Techniques (2 hours)",
-        "Module 9: Introduction to Scikit-Learn (2 hours)",
-        "Module 10: Final Project & Real-world Applications (2 hours)"
-    ];
-
-    return (
-        <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Explore Our Course Modules</h2>
-            <p className="text-gray-600 mb-8">Dive into our structured course modules, each designed to provide in-depth knowledge and practical skills for a well-rounded learning experience.</p>
-
-            <div className="border border-gray-200 rounded-xl divide-y divide-gray-200 overflow-hidden bg-white shadow-sm mb-6">
-                {modules.map((module, idx) => (
-                    <div key={idx} className="p-4 hover:bg-gray-50 transition-colors flex items-center gap-3">
-                        <span className="w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs font-bold flex-shrink-0">
-                            {idx + 1}
-                        </span>
-                        <span className="font-medium text-gray-800">{module}</span>
-                    </div>
-                ))}
-            </div>
-
-            <div className="bg-blue-50 border border-blue-100 rounded-lg p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div>
-                    <h4 className="font-bold text-blue-900">Additional Resources & Evaluation</h4>
-                    <p className="text-sm text-blue-700">Access comprehensive syllabus and assessments.</p>
-                </div>
-                <div className="flex items-center gap-2">
-                    <div className="bg-white px-3 py-1 rounded text-xs font-bold text-blue-800 border border-blue-200">
-                        Powered By IBM
-                    </div>
-                    <button className="text-sm font-semibold text-blue-600 hover:text-blue-800 hover:underline">
-                        Download Brochure
-                    </button>
-                </div>
-            </div>
-        </section>
-    );
-};
-
-const CertificationSection = () => (
-    <section className="bg-gray-900 text-white rounded-2xl p-8 lg:p-12 relative overflow-hidden">
-        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10">
-            <div className="flex-1 space-y-6">
-                <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-sm font-medium text-amber-300">
-                    <Award className="w-4 h-4" />
-                    <span>Official Recognition</span>
-                </div>
-                <h2 className="text-3xl font-bold leading-tight">Certificate Powered By IBM</h2>
-                <p className="text-gray-400 text-lg">
-                    Validate your skills with a professional certificate from Global Interns and IBM.
-                </p>
-                <button className="text-white font-medium border-b border-white pb-0.5 hover:text-accent-orange hover:border-accent-orange transition-colors">
-                    View Sample Certificate
-                </button>
-            </div>
-            <div className="flex-1 w-full max-w-md">
-                <div className="aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border border-gray-700 shadow-2xl flex items-center justify-center relative">
-                    {/* Placeholder for Certificate Image */}
-                    <div className="text-center p-8">
-                        <Award className="w-16 h-16 text-amber-500 mx-auto mb-4" />
-                        <h4 className="font-bold text-xl mb-1">Certificate of Completion</h4>
-                        <p className="text-gray-500 text-sm">Global Interns</p>
-                    </div>
+                    <h3 className="font-bold text-lg text-gray-900">Grow & Achieve</h3>
+                    <p className="text-gray-600 text-sm mt-1">Navigate your career with ongoing support, regular check-ins, and actionable feedback.</p>
                 </div>
             </div>
         </div>
@@ -267,9 +201,9 @@ const CertificationSection = () => (
 
 const PricingSection = () => (
     <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Select the Best Plan for Your Growth</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Flexible Mentorship Plans</h2>
         <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-            Choose the plan that suits your learning needs and start your journey with Global Interns Edtech today.
+            Invest in yourself. Choose a plan that fits your current career stage and needs.
         </p>
 
         <div className="max-w-md mx-auto">
@@ -279,18 +213,18 @@ const PricingSection = () => (
                 </div>
 
                 <div className="mb-8 text-center">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">IBM Professional</h3>
-                    <p className="text-sm text-gray-500 mb-4">Get Certification from IBM at just</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Pro Mentorship</h3>
+                    <p className="text-sm text-gray-500 mb-4">Comprehensive Career Support</p>
                     <div className="flex items-center justify-center gap-1">
-                        <span className="text-4xl font-bold text-gray-900">₹14,285</span>
+                        <span className="text-4xl font-bold text-gray-900">₹15,000</span>
+                        <span className="text-gray-500 self-end mb-1">/ month</span>
                     </div>
                 </div>
 
                 <ul className="space-y-4 mb-8">
                     {[
-                        'Recorded Sessions', 'Hands-on Projects', 'Certifications',
-                        'Live Sessions', 'Doubt Clear Sessions', 'Mentor Guidance',
-                        'Placement Support', '1:1 Mentoring'
+                        '2 Video Calls per Month', 'Unlimited Chat Support', 'Resume & Profile Review',
+                        'Mock Interview Session', 'Personalized Roadmap', 'Quarterly Progress Report'
                     ].map((feat, idx) => (
                         <li key={idx} className="flex items-center gap-3 text-sm text-gray-700">
                             <CheckCircle className="w-5 h-5 flex-shrink-0 text-accent-orange" />
@@ -300,19 +234,19 @@ const PricingSection = () => (
                 </ul>
 
                 <button className="w-full py-4 rounded-xl font-bold text-lg transition-all bg-gray-900 text-white hover:bg-black shadow-lg hover:shadow-xl">
-                    Enroll Now
+                    Get Matched Now
                 </button>
             </div>
         </div>
     </section>
 );
 
-const AlumniSection = () => (
+const MentorsSection = () => (
     <section className="text-center pt-8 border-t border-gray-100">
-        <h3 className="text-lg font-bold text-gray-900 mb-2">Our Alumni Works At</h3>
-        <p className="text-gray-500 text-sm mb-8">Explore the top companies and organizations where our alumni have built successful careers.</p>
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Our Mentors Work At</h3>
+        <p className="text-gray-500 text-sm mb-8">Learn from the best in the industry.</p>
         <div className="flex flex-wrap justify-center gap-8 lg:gap-12 opacity-60">
-            {['Google', 'Microsoft', 'Amazon', 'IBM', 'Nvidia', 'Intel'].map((company, idx) => (
+            {['Google', 'Amazon', 'Meta', 'Netflix', 'Microsoft', 'Uber', 'Airbnb'].map((company, idx) => (
                 <span key={idx} className="text-xl font-bold text-gray-800">{company}</span>
             ))}
         </div>
@@ -321,13 +255,11 @@ const AlumniSection = () => (
 
 const TestimonialsSection = () => (
     <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">Voices of Success</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">Mentee Success Stories</h2>
         <div className="grid md:grid-cols-2 gap-6">
             {[
-                { name: 'Shreya S Sen', role: 'Global Interns Review at Google', review: "It's an amazing experience. I am learning something new other than my subjects. Classes are also conducted in a very efficient way. It's totally worth the money I have paid." },
-                { name: 'Farooq Ahmed', role: 'Global Interns Review at Google', review: "Working at Global Interns has been a great learning experience. The company provides a supportive environment where employees are encouraged to learn new skills." },
-                { name: 'Babalu Bharti', role: 'Global Interns Review at Google', review: "Global Interns is a great Edutech to enhance your career. The mentors are really good and they teach in very deeply and nicely." },
-                { name: 'Pandey Rudra', role: 'Global Interns Review at Google', review: "Global Interns Edu Tech is an excellent platform for skill-based learning. The courses are well-structured, practical, and truly help students grow." }
+                { name: 'Riya Malhotra', role: 'Software Engineer', review: "My mentor helped me transition from a service-based company to a product-based one. The mock interviews were a game-changer." },
+                { name: 'David Chen', role: 'Data Scientist', review: "Having someone to guide me through my projects and review my code accelerated my learning 10x. Highly recommended!" },
             ].map((item, idx) => (
                 <div key={idx} className="bg-gray-50 p-6 rounded-xl border border-gray-100">
                     <div className="flex items-center gap-4 mb-4">
@@ -340,7 +272,6 @@ const TestimonialsSection = () => (
                         </div>
                     </div>
                     <p className="text-gray-600 italic text-sm mb-4">"{item.review}"</p>
-                    <button className="text-accent-orange text-sm font-semibold hover:underline">View Review</button>
                 </div>
             ))}
         </div>
@@ -353,10 +284,10 @@ const ApplyForm = () => {
         email: '',
         phone: '',
         college: '',
-        programOfInterest: 'IBM Python for Data Science',
+        programOfInterest: 'Global Mentor Global Mentorship Program',
         reason: ''
     });
-    const [status, setStatus] = useState('idle'); // idle, submitting, success, error
+    const [status, setStatus] = useState('idle');
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleChange = (e) => {
@@ -384,7 +315,7 @@ const ApplyForm = () => {
 
             if (result.result === 'success') {
                 setStatus('success');
-                setFormData({ fullName: '', email: '', phone: '', college: '', programOfInterest: 'IBM Python for Data Science', reason: '' });
+                setFormData({ fullName: '', email: '', phone: '', college: '', programOfInterest: 'Global Mentorship Program', reason: '' });
                 setTimeout(() => setStatus('idle'), 5000);
             } else {
                 throw new Error(result.error || result.message || 'Submission failed on server');
@@ -399,13 +330,13 @@ const ApplyForm = () => {
 
     return (
         <div id="apply-form" className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Secure Your Spot</h3>
-            <p className="text-gray-500 text-sm mb-6">Applications closing soon for next batch.</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Find Your Mentor</h3>
+            <p className="text-gray-500 text-sm mb-6">Tell us about your goals, and we'll match you with the right expert.</p>
 
             {status === 'success' ? (
                 <div className="bg-green-50 text-green-700 p-4 rounded-lg text-center">
                     <p className="font-bold">Application submitted successfully!</p>
-                    <p className="text-sm mt-1">We will get back to you shortly.</p>
+                    <p className="text-sm mt-1">We will be in touch shortly.</p>
                 </div>
             ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -446,7 +377,7 @@ const ApplyForm = () => {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">College / University</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Current Role / College</label>
                         <input
                             type="text"
                             name="college"
@@ -454,18 +385,18 @@ const ApplyForm = () => {
                             onChange={handleChange}
                             required
                             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none"
-                            placeholder="University Name"
+                            placeholder="Student / Software Engineer"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Reason for joining</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">What are your mentorship goals?</label>
                         <textarea
                             name="reason"
                             value={formData.reason}
                             onChange={handleChange}
                             required
                             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none h-24 resize-none"
-                            placeholder="Type your reason..."
+                            placeholder="E.g., I want to switch to Data Science..."
                         />
                     </div>
 
@@ -480,7 +411,7 @@ const ApplyForm = () => {
                         disabled={status === 'submitting'}
                         className="w-full bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl transition-all mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                        {status === 'submitting' ? 'Submitting...' : 'Submit'}
+                        {status === 'submitting' ? 'Submitting...' : 'Submit Request'}
                     </button>
                     <p className="text-xs text-center text-gray-400 mt-4">
                         By submitting, you agree to our Terms & Privacy Policy.
@@ -495,16 +426,16 @@ const FinalCTA = () => (
     <section className="bg-gray-50 border-t border-gray-200 py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                Experience Your Learning Journey at Global Interns Edtech
+                Don't Walk Alone on Your Career Path
             </h2>
             <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
-                Embark on your learning journey where innovative courses and expert guidance empower you to achieve your professional goals.
+                Join our Global Mentorship Program and get the guidance you need to succeed.
             </p>
             <button className="bg-gray-900 hover:bg-black text-white px-10 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
-                Apply Now & Get Started
+                Apply Now & Get Matched
             </button>
         </div>
     </section>
 );
 
-export default PythonForDataScienceProgram;
+export default GlobalMentorshipProgram;
