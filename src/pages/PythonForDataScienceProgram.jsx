@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Star, Clock, Calendar, CheckCircle, ChevronDown,
     Brain, Code, Bot, Briefcase, Award, TrendingUp, Users,
-    BookOpen, Search, ShieldCheck, PenTool, Database, BarChart, FileText
+    BookOpen, Search, ShieldCheck, PenTool, Database, BarChart, FileText, Terminal
 } from 'lucide-react';
 
-const DataScienceProgram = () => {
+const PythonForDataScienceProgram = () => {
     return (
         <div className="pt-20 font-sans text-gray-900 bg-white">
             <HeroSection />
@@ -39,8 +39,8 @@ const HeroSection = () => (
         {/* Background image */}
         <div className="absolute inset-0">
             <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2070&q=80"
-                alt="Data Science"
+                src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=2070&q=80"
+                alt="Python for Data Science"
                 className="h-full w-full object-cover object-center"
             />
             {/* Premium overlay */}
@@ -69,12 +69,12 @@ const HeroSection = () => (
 
                 {/* Heading */}
                 <h1 className="text-4xl lg:text-6xl font-semibold tracking-tight leading-tight mb-6">
-                    Data Science
+                    Python for Data Science
                 </h1>
 
                 {/* Subheading */}
                 <p className="text-lg lg:text-xl text-white/70 leading-relaxed max-w-2xl mb-10">
-                    Global Interns - Microsoft - IBM. Master the comprehensive field of Data Science.
+                    Global Interns - Microsoft - IBM. Master the foundational programming language of the data world.
                 </p>
 
                 {/* Program facts */}
@@ -133,11 +133,11 @@ const DiscoverSection = () => (
 const ToolsSection = () => (
     <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-8">Tools and Technologies You'll Learn</h2>
-        <p className="text-gray-600 mb-6">Learn a wide range of data science tools and libraries, from data analysis to advanced machine learning, to equip you with the skills needed for real-world projects and career success.</p>
+        <p className="text-gray-600 mb-6">Master the essential Python libraries and tools that define the data science ecosystem, giving you a strong foundation for your career.</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-                'Python', 'R', 'SQL', 'Pandas',
-                'Scikit-learn', 'TensorFlow', 'Tableau', 'Hadoop'
+                'Python', 'Jupyter', 'NumPy', 'Pandas',
+                'Matplotlib', 'Seaborn', 'SciPy', 'Anaconda'
             ].map((tool, idx) => (
                 <div key={idx} className="bg-white border border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center gap-3 hover:border-gray-300 transition-colors aspect-square">
                     <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 font-bold text-lg">
@@ -163,18 +163,18 @@ const ProjectsSection = () => (
                 <div>
                     <h3 className="font-bold text-lg text-gray-900">Mini Project(1)</h3>
                     <p className="text-gray-600 text-sm mb-2">Duration: 1 Week</p>
-                    <p className="text-gray-500 text-sm">Perform customer segmentation using clustering algorithms to identify key market groups.</p>
+                    <p className="text-gray-500 text-sm">Analyze historical stock market data using Pandas and visualize trends with Matplotlib.</p>
                 </div>
             </div>
 
             <div className="flex gap-4 p-6 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all bg-white">
                 <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Brain className="w-6 h-6" />
+                    <Terminal className="w-6 h-6" />
                 </div>
                 <div>
                     <h3 className="font-bold text-lg text-gray-900">Major Project(1)</h3>
                     <p className="text-gray-600 text-sm mb-2">Duration: 3 Weeks</p>
-                    <p className="text-gray-500 text-sm">Develop a predictive model for credit risk assessment using advanced ensemble learning techniques.</p>
+                    <p className="text-gray-500 text-sm">Build a predictive model specifically for Titanic Survival using data preprocessing and basic ML concepts.</p>
                 </div>
             </div>
         </div>
@@ -183,16 +183,16 @@ const ProjectsSection = () => (
 
 const SyllabusSection = () => {
     const modules = [
-        "Module 1: Introduction to Data Science (2 hours)",
-        "Module 2: Python Programming for Data Science (2 hours)",
-        "Module 3: Statistics and Probability (2 hours)",
-        "Module 4: Data Preprocessing and Cleaning (2 hours)",
-        "Module 5: Exploratory Data Analysis (EDA) (2 hours)",
-        "Module 6: Machine Learning: Supervised Learning (2 hours)",
-        "Module 7: Machine Learning: Unsupervised Learning (2 hours)",
-        "Module 8: Deep Learning Basics (2 hours)",
-        "Module 9: Data Visualization and Reporting (2 hours)",
-        "Module 10: Capstone Project and Career Prep (2 hours)"
+        "Module 1: Python Environment Setup & Basics (2 hours)",
+        "Module 2: Python Data Structures & Control Flow (2 hours)",
+        "Module 3: Functions and Object-Oriented Programming (2 hours)",
+        "Module 4: Introduction to NumPy for Numerical Computing (2 hours)",
+        "Module 5: Data Manipulation with Pandas (2 hours)",
+        "Module 6: Data Visualization using Matplotlib (2 hours)",
+        "Module 7: Statistical Data Visualization with Seaborn (2 hours)",
+        "Module 8: Exploratory Data Analysis (EDA) Techniques (2 hours)",
+        "Module 9: Introduction to Scikit-Learn (2 hours)",
+        "Module 10: Final Project & Real-world Applications (2 hours)"
     ];
 
     return (
@@ -389,4 +389,4 @@ const FinalCTA = () => (
     </section>
 );
 
-export default DataScienceProgram;
+export default PythonForDataScienceProgram;

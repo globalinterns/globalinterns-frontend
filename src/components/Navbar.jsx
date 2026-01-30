@@ -58,6 +58,41 @@ const Navbar = () => {
         }
     ];
 
+    const goGlobalCategories = [
+        {
+            title: 'IBM',
+            items: [
+                { name: 'Introducing AI', path: '/program/introducing-ai', duration: '2-3 Months', status: 'Live' },
+                { name: 'Machine Learning with Python', path: '/program/machine-learning-with-python', duration: '2-3 Months', status: 'Live' },
+                { name: 'Data Analysis with Python', path: '/program/data-analysis-with-python', duration: '2-3 Months', status: 'Live' },
+                { name: 'Data Science', path: '/program/data-science', duration: '2-3 Months', status: 'Live' },
+                { name: 'Python for Data Science', path: '/program/python-for-data-science', duration: '2-3 Months', status: 'Live' },
+                { name: 'Java Fundamentals', path: '/program/java-fundamentals', duration: '2-3 Months', status: 'Live' },
+                { name: 'Introduction to Cloud', path: '#', duration: '2-3 Months', status: 'Live' }
+            ]
+        },
+        {
+            title: 'Microsoft',
+            items: [
+                { name: 'Microsoft Azure AI Fundamentals', path: '#', duration: '2-3 Months', status: 'Live' },
+                { name: 'Microsoft Azure Cloud Fundamentals', path: '#', duration: '2-3 Months', status: 'Live' },
+                { name: 'Microsoft Azure Data Fundamentals', path: '#', duration: '2-3 Months' }
+            ]
+        },
+        {
+            title: 'Meta',
+            items: [
+                { name: 'Digital Marketing Associate', path: '#', duration: '2-3 Months', status: 'Live' }
+            ]
+        },
+        {
+            title: 'Global Mentor',
+            items: [
+                { name: 'Global Mentorship Program', path: '#', duration: 'Ongoing', status: 'Live' }
+            ]
+        }
+    ];
+
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
@@ -94,7 +129,7 @@ const Navbar = () => {
 
     const navItems = [
         { label: 'Career Starter', id: 'career-starter', type: 'dropdown' },
-        { label: 'Go Global', path: '/global', type: 'link' },
+        { label: 'Go Global', id: 'go-global', type: 'dropdown' },
         { label: 'Find Your Dream Job', path: '/find-dream-job', type: 'link' },
         { label: 'How It Works', id: 'how-it-works', type: 'scroll' },
         { label: 'Campus Ambassador', path: '/campus-ambassador', type: 'link' },
@@ -181,26 +216,110 @@ const Navbar = () => {
                                             w-[900px] bg-white/95 backdrop-blur-xl border border-border rounded-3xl shadow-xl p-8 
                                             grid grid-cols-4 gap-8 z-50 origin-top"
                                             >
-                                                {programCategories.map((category, idx) => (
-                                                    <div key={idx} className="space-y-4">
-                                                        <h3 className="text-sm font-bold text-accent-orange uppercase tracking-wider border-b border-border pb-2">
-                                                            {category.title}
-                                                        </h3>
-                                                        <ul className="space-y-3">
-                                                            {category.items.map((subItem, subIdx) => (
-                                                                <li key={subIdx}>
-                                                                    <button
-                                                                        onClick={() => handleProgramClick(subItem.path)}
-                                                                        className={`text-sm text-text-secondary hover:text-text-primary hover:font-medium transition-all text-left block w-full
-                                                                    ${location.pathname === subItem.path ? 'text-accent-orange font-medium' : ''}`}
-                                                                    >
-                                                                        {subItem.name}
-                                                                    </button>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
+                                                {item.label === 'Go Global' ? (
+                                                    // Premium Dropdown for Go Global
+                                                    <div className="col-span-4 grid grid-cols-4 gap-6">
+                                                        {goGlobalCategories.map((category, idx) => (
+                                                            <div key={idx} className="space-y-4">
+                                                                <div className="flex items-center gap-2 border-b border-gray-100 pb-2">
+                                                                    <div className={`
+                                                                    w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-xs shadow-md
+                                                                    ${category.title === 'IBM' ? 'bg-[#0530ad]' : ''}
+                                                                    ${category.title === 'Microsoft' ? 'bg-[#00a4ef]' : ''}
+                                                                    ${category.title === 'Meta' ? 'bg-[#1877f2]' : ''}
+                                                                    ${category.title === 'Global Mentor' ? 'bg-gradient-to-r from-orange-400 to-pink-500' : ''}
+                                                                `}>
+                                                                        {category.title.substring(0, 1)}
+                                                                    </div>
+                                                                    <h3 className={`text-base font-bold tracking-tight
+                                                                    ${category.title === 'IBM' ? 'text-[#0530ad]' : ''}
+                                                                    ${category.title === 'Microsoft' ? 'text-[#00a4ef]' : ''}
+                                                                    ${category.title === 'Meta' ? 'text-[#1877f2]' : ''}
+                                                                    ${category.title === 'Global Mentor' ? 'text-gray-800' : ''}
+                                                                `}>
+                                                                        {category.title}
+                                                                    </h3>
+                                                                </div>
+
+                                                                <div className="space-y-3">
+                                                                    {category.items.map((subItem, subIdx) => (
+                                                                        <button
+                                                                            key={subIdx}
+                                                                            onClick={() => handleProgramClick(subItem.path)}
+                                                                            className="w-full text-left group/card"
+                                                                        >
+                                                                            <div className="bg-gray-50 hover:bg-white border border-transparent hover:border-gray-200 rounded-xl p-3 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 relative overflow-hidden">
+                                                                                {/* Hover Gradient Background */}
+                                                                                <div className={`absolute inset-0 opacity-0 group-hover/card:opacity-5 transition-opacity duration-300
+                                                                                ${category.title === 'IBM' ? 'bg-[#0530ad]' : ''}
+                                                                                ${category.title === 'Microsoft' ? 'bg-[#00a4ef]' : ''}
+                                                                                ${category.title === 'Meta' ? 'bg-[#1877f2]' : ''}
+                                                                                ${category.title === 'Global Mentor' ? 'bg-orange-500' : ''}
+                                                                            `} />
+
+                                                                                <div className="relative z-10">
+                                                                                    <div className="font-bold text-gray-800 text-sm mb-1 leading-tight group-hover/card:text-black">
+                                                                                        {subItem.name}
+                                                                                    </div>
+                                                                                    <div className="flex flex-wrap items-center gap-2">
+                                                                                        {subItem.duration && (
+                                                                                            <span className="text-[10px] font-medium text-gray-500 bg-white px-2 py-0.5 rounded-md border border-gray-100 shadow-sm">
+                                                                                                {subItem.duration}
+                                                                                            </span>
+                                                                                        )}
+                                                                                        {subItem.status === 'Live' && (
+                                                                                            <span className="flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-md">
+                                                                                                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                                                                                                LIVE
+                                                                                            </span>
+                                                                                        )}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </button>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        ))}
                                                     </div>
-                                                ))}
+                                                ) : (
+                                                    // Standard Dropdown for Career Starter
+                                                    programCategories.map((category, idx) => (
+                                                        <div key={idx} className="space-y-4">
+                                                            <h3 className="text-sm font-bold text-accent-orange uppercase tracking-wider border-b border-border pb-2">
+                                                                {category.title}
+                                                            </h3>
+                                                            <ul className="space-y-3">
+                                                                {category.items.map((subItem, subIdx) => (
+                                                                    <li key={subIdx}>
+                                                                        <button
+                                                                            onClick={() => handleProgramClick(subItem.path)}
+                                                                            className={`text-sm text-text-secondary hover:text-text-primary hover:font-medium transition-all text-left block w-full group/item
+                                                                     ${location.pathname === subItem.path ? 'text-accent-orange font-medium' : ''}`}
+                                                                        >
+                                                                            <div className="flex flex-col gap-0.5">
+                                                                                <span className="group-hover/item:text-accent-orange transition-colors duration-200">
+                                                                                    {subItem.name}
+                                                                                </span>
+                                                                                {(subItem.duration || subItem.status) && (
+                                                                                    <div className="flex items-center gap-2 text-[10px] uppercase tracking-wide font-medium opacity-70">
+                                                                                        {subItem.duration && <span>{subItem.duration}</span>}
+                                                                                        {subItem.status === 'Live' && (
+                                                                                            <span className="flex items-center gap-1 text-green-600 bg-green-50 px-1.5 rounded-full">
+                                                                                                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                                                                                                Live
+                                                                                            </span>
+                                                                                        )}
+                                                                                    </div>
+                                                                                )}
+                                                                            </div>
+                                                                        </button>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    ))
+                                                )}
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
@@ -262,7 +381,7 @@ const Navbar = () => {
                                                         exit={{ height: 0, opacity: 0 }}
                                                         className="space-y-6 pl-4 pb-4"
                                                     >
-                                                        {programCategories.map((cat, i) => (
+                                                        {(item.label === 'Go Global' ? goGlobalCategories : programCategories).map((cat, i) => (
                                                             <div key={i} className="space-y-3">
                                                                 <div className="text-xs font-bold text-accent-orange uppercase tracking-wider">
                                                                     {cat.title}
@@ -274,7 +393,14 @@ const Navbar = () => {
                                                                             onClick={() => handleProgramClick(sub.path)}
                                                                             className="text-sm text-text-secondary hover:text-text-primary text-left py-1"
                                                                         >
-                                                                            {sub.name}
+                                                                            <div className="flex flex-col">
+                                                                                <span>{sub.name}</span>
+                                                                                {(sub.duration || sub.status) && (
+                                                                                    <span className="text-[10px] text-gray-400">
+                                                                                        {sub.duration} {sub.status ? `• ${sub.status}` : ''}
+                                                                                    </span>
+                                                                                )}
+                                                                            </div>
                                                                         </button>
                                                                     ))}
                                                                 </div>

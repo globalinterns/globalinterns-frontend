@@ -7,15 +7,20 @@ import Home from './pages/Home';
 import CampusAmbassador from './pages/CampusAmbassador';
 
 import WebDevelopmentProgram from './pages/WebDevelopmentProgram';
+import IntroducingAIProgram from './pages/IntroducingAIProgram';
 import ArtificialIntelligenceProgram from './pages/ArtificialIntelligenceProgram';
 import MachineLearningProgram from './pages/MachineLearningProgram';
 
+import MachineLearningWithPythonProgram from './pages/MachineLearningWithPythonProgram';
+import DataAnalysisWithPythonProgram from './pages/DataAnalysisWithPythonProgram';
+import PythonForDataScienceProgram from './pages/PythonForDataScienceProgram';
 import DataScienceProgram from './pages/DataScienceProgram';
 
 import AndroidDevelopmentProgram from './pages/AndroidDevelopmentProgram';
 
 import CyberSecurityProgram from './pages/CyberSecurityProgram';
 
+import JavaFundamentalsProgram from './pages/JavaFundamentalsProgram';
 import JavaProgram from './pages/JavaProgram';
 
 import PythonProgram from './pages/PythonProgram';
@@ -59,10 +64,15 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/campus-ambassador" element={<CampusAmbassador />} />
 
+                    <Route path="/program/introducing-ai" element={<IntroducingAIProgram />} />
+                    <Route path="/program/machine-learning-with-python" element={<MachineLearningWithPythonProgram />} />
+                    <Route path="/program/data-analysis-with-python" element={<DataAnalysisWithPythonProgram />} />
                     <Route path="/program/web-development" element={<WebDevelopmentProgram />} />
                     <Route path="/program/artificial-intelligence" element={<ArtificialIntelligenceProgram />} />
                     <Route path="/program/machine-learning" element={<MachineLearningProgram />} />
                     <Route path="/program/data-science" element={<DataScienceProgram />} />
+                    <Route path="/program/python-for-data-science" element={<PythonForDataScienceProgram />} />
+                    <Route path="/program/java-fundamentals" element={<JavaFundamentalsProgram />} />
                     <Route path="/program/android-development" element={<AndroidDevelopmentProgram />} />
                     <Route path="/program/cyber-security" element={<CyberSecurityProgram />} />
                     <Route path="/program/java" element={<JavaProgram />} />

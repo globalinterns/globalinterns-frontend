@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Star, Clock, Calendar, CheckCircle, ChevronDown,
     Brain, Code, Bot, Briefcase, Award, TrendingUp, Users,
-    BookOpen, Search, ShieldCheck, PenTool, Database, BarChart, FileText
+    BookOpen, Search, ShieldCheck, PenTool, Database, BarChart
 } from 'lucide-react';
 
-const DataScienceProgram = () => {
+const DataAnalysisWithPythonProgram = () => {
     return (
         <div className="pt-20 font-sans text-gray-900 bg-white">
             <HeroSection />
@@ -40,7 +40,7 @@ const HeroSection = () => (
         <div className="absolute inset-0">
             <img
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2070&q=80"
-                alt="Data Science"
+                alt="Data Analysis with Python"
                 className="h-full w-full object-cover object-center"
             />
             {/* Premium overlay */}
@@ -69,12 +69,12 @@ const HeroSection = () => (
 
                 {/* Heading */}
                 <h1 className="text-4xl lg:text-6xl font-semibold tracking-tight leading-tight mb-6">
-                    Data Science
+                    Data Analysis with Python
                 </h1>
 
                 {/* Subheading */}
                 <p className="text-lg lg:text-xl text-white/70 leading-relaxed max-w-2xl mb-10">
-                    Global Interns - Microsoft - IBM. Master the comprehensive field of Data Science.
+                    Global Interns - Microsoft - IBM. Master the art of extracting insights from data using Python.
                 </p>
 
                 {/* Program facts */}
@@ -133,11 +133,11 @@ const DiscoverSection = () => (
 const ToolsSection = () => (
     <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-8">Tools and Technologies You'll Learn</h2>
-        <p className="text-gray-600 mb-6">Learn a wide range of data science tools and libraries, from data analysis to advanced machine learning, to equip you with the skills needed for real-world projects and career success.</p>
+        <p className="text-gray-600 mb-6">Learn a wide range of analytical tools and libraries, from data manipulation to visualization, to equip you with the skills needed for data-driven decision making.</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-                'Python', 'R', 'SQL', 'Pandas',
-                'Scikit-learn', 'TensorFlow', 'Tableau', 'Hadoop'
+                'Python', 'Pandas', 'NumPy', 'Matplotlib',
+                'Seaborn', 'SQL', 'Jupyter', 'Excel'
             ].map((tool, idx) => (
                 <div key={idx} className="bg-white border border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center gap-3 hover:border-gray-300 transition-colors aspect-square">
                     <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 font-bold text-lg">
@@ -158,23 +158,23 @@ const ProjectsSection = () => (
         <div className="space-y-6">
             <div className="flex gap-4 p-6 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all bg-white">
                 <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <TrendingUp className="w-6 h-6" />
+                    <BarChart className="w-6 h-6" />
                 </div>
                 <div>
                     <h3 className="font-bold text-lg text-gray-900">Mini Project(1)</h3>
                     <p className="text-gray-600 text-sm mb-2">Duration: 1 Week</p>
-                    <p className="text-gray-500 text-sm">Perform customer segmentation using clustering algorithms to identify key market groups.</p>
+                    <p className="text-gray-500 text-sm">Perform Exploratory Data Analysis (EDA) on a retail sales dataset to uncover trends and patterns.</p>
                 </div>
             </div>
 
             <div className="flex gap-4 p-6 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all bg-white">
                 <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Brain className="w-6 h-6" />
+                    <TrendingUp className="w-6 h-6" />
                 </div>
                 <div>
                     <h3 className="font-bold text-lg text-gray-900">Major Project(1)</h3>
                     <p className="text-gray-600 text-sm mb-2">Duration: 3 Weeks</p>
-                    <p className="text-gray-500 text-sm">Develop a predictive model for credit risk assessment using advanced ensemble learning techniques.</p>
+                    <p className="text-gray-500 text-sm">Build a comprehensive Customer Churn Analysis Dashboard to predict and visualize customer retention.</p>
                 </div>
             </div>
         </div>
@@ -183,16 +183,16 @@ const ProjectsSection = () => (
 
 const SyllabusSection = () => {
     const modules = [
-        "Module 1: Introduction to Data Science (2 hours)",
-        "Module 2: Python Programming for Data Science (2 hours)",
-        "Module 3: Statistics and Probability (2 hours)",
-        "Module 4: Data Preprocessing and Cleaning (2 hours)",
-        "Module 5: Exploratory Data Analysis (EDA) (2 hours)",
-        "Module 6: Machine Learning: Supervised Learning (2 hours)",
-        "Module 7: Machine Learning: Unsupervised Learning (2 hours)",
-        "Module 8: Deep Learning Basics (2 hours)",
-        "Module 9: Data Visualization and Reporting (2 hours)",
-        "Module 10: Capstone Project and Career Prep (2 hours)"
+        "Module 1: Introduction to Data Analysis and Python (2 hours)",
+        "Module 2: Numerical Computing with NumPy (2 hours)",
+        "Module 3: Data Manipulation with Pandas (2 hours)",
+        "Module 4: Data Cleaning and Preprocessing (2 hours)",
+        "Module 5: Data Visualization with Matplotlib (2 hours)",
+        "Module 6: Advanced Visualization with Seaborn (2 hours)",
+        "Module 7: Statistical Analysis Fundamentals (2 hours)",
+        "Module 8: SQL for Data Analysis (2 hours)",
+        "Module 9: Data Storytelling and Reporting (2 hours)",
+        "Module 10: Capstone Project: Real-world Analysis (2 hours)"
     ];
 
     return (
@@ -389,4 +389,4 @@ const FinalCTA = () => (
     </section>
 );
 
-export default DataScienceProgram;
+export default DataAnalysisWithPythonProgram;

@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Star, Clock, Calendar, CheckCircle, ChevronDown,
     Brain, Code, Bot, Briefcase, Award, TrendingUp, Users,
-    BookOpen, Search, ShieldCheck, PenTool, Database, BarChart, FileText
+    BookOpen, Search, ShieldCheck, PenTool
 } from 'lucide-react';
 
-const DataScienceProgram = () => {
+const IntroducingAIProgram = () => {
     return (
         <div className="pt-20 font-sans text-gray-900 bg-white">
             <HeroSection />
@@ -39,8 +39,8 @@ const HeroSection = () => (
         {/* Background image */}
         <div className="absolute inset-0">
             <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2070&q=80"
-                alt="Data Science"
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=2070&q=80"
+                alt="Introducing AI"
                 className="h-full w-full object-cover object-center"
             />
             {/* Premium overlay */}
@@ -69,12 +69,12 @@ const HeroSection = () => (
 
                 {/* Heading */}
                 <h1 className="text-4xl lg:text-6xl font-semibold tracking-tight leading-tight mb-6">
-                    Data Science
+                    Introducing AI
                 </h1>
 
                 {/* Subheading */}
                 <p className="text-lg lg:text-xl text-white/70 leading-relaxed max-w-2xl mb-10">
-                    Global Interns - Microsoft - IBM. Master the comprehensive field of Data Science.
+                    Global Interns - Microsoft - IBM. Join our most trending Introducing AI course.
                 </p>
 
                 {/* Program facts */}
@@ -133,11 +133,11 @@ const DiscoverSection = () => (
 const ToolsSection = () => (
     <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-8">Tools and Technologies You'll Learn</h2>
-        <p className="text-gray-600 mb-6">Learn a wide range of data science tools and libraries, from data analysis to advanced machine learning, to equip you with the skills needed for real-world projects and career success.</p>
+        <p className="text-gray-600 mb-6">Learn a wide range of programming languages and tools, from foundational to advanced, to equip you with the skills needed for real-world projects and career success.</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-                'Python', 'R', 'SQL', 'Pandas',
-                'Scikit-learn', 'TensorFlow', 'Tableau', 'Hadoop'
+                'Python', 'NumPy', 'OpenCV', 'Pandas',
+                'Matplotlib', 'Scikit-learn', 'TensorFlow', 'PyTorch'
             ].map((tool, idx) => (
                 <div key={idx} className="bg-white border border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center gap-3 hover:border-gray-300 transition-colors aspect-square">
                     <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 font-bold text-lg">
@@ -158,12 +158,12 @@ const ProjectsSection = () => (
         <div className="space-y-6">
             <div className="flex gap-4 p-6 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all bg-white">
                 <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <TrendingUp className="w-6 h-6" />
+                    <Code className="w-6 h-6" />
                 </div>
                 <div>
                     <h3 className="font-bold text-lg text-gray-900">Mini Project(1)</h3>
                     <p className="text-gray-600 text-sm mb-2">Duration: 1 Week</p>
-                    <p className="text-gray-500 text-sm">Perform customer segmentation using clustering algorithms to identify key market groups.</p>
+                    <p className="text-gray-500 text-sm">Implement core concepts in a focused, short-term project.</p>
                 </div>
             </div>
 
@@ -174,7 +174,7 @@ const ProjectsSection = () => (
                 <div>
                     <h3 className="font-bold text-lg text-gray-900">Major Project(1)</h3>
                     <p className="text-gray-600 text-sm mb-2">Duration: 3 Weeks</p>
-                    <p className="text-gray-500 text-sm">Develop a predictive model for credit risk assessment using advanced ensemble learning techniques.</p>
+                    <p className="text-gray-500 text-sm">Solve a complex problem with an end-to-end AI solution.</p>
                 </div>
             </div>
         </div>
@@ -183,16 +183,16 @@ const ProjectsSection = () => (
 
 const SyllabusSection = () => {
     const modules = [
-        "Module 1: Introduction to Data Science (2 hours)",
-        "Module 2: Python Programming for Data Science (2 hours)",
-        "Module 3: Statistics and Probability (2 hours)",
-        "Module 4: Data Preprocessing and Cleaning (2 hours)",
-        "Module 5: Exploratory Data Analysis (EDA) (2 hours)",
-        "Module 6: Machine Learning: Supervised Learning (2 hours)",
-        "Module 7: Machine Learning: Unsupervised Learning (2 hours)",
-        "Module 8: Deep Learning Basics (2 hours)",
-        "Module 9: Data Visualization and Reporting (2 hours)",
-        "Module 10: Capstone Project and Career Prep (2 hours)"
+        "Module 1: Introduction to Artificial Intelligence (2 hours)",
+        "Module 2: Python for AI (2 hours)",
+        "Module 3: Machine Learning Basics (2 hours)",
+        "Module 4: Supervised Learning (2 hours)",
+        "Module 5: Unsupervised Learning (2 hours)",
+        "Module 6: Neural Networks and Deep Learning (2 hours)",
+        "Module 7: Natural Language Processing (2 hours)",
+        "Module 8: AI Ethics and Bias (2 hours)",
+        "Module 9: AI in Practice (2 hours)",
+        "Module 10: Future of AI and Final Review (2 hours)"
     ];
 
     return (
@@ -218,7 +218,7 @@ const SyllabusSection = () => {
                 </div>
                 <div className="flex items-center gap-2">
                     <div className="bg-white px-3 py-1 rounded text-xs font-bold text-blue-800 border border-blue-200">
-                        Powered By IBM
+                        Powered By IBM AI
                     </div>
                     <button className="text-sm font-semibold text-blue-600 hover:text-blue-800 hover:underline">
                         Download Brochure
@@ -389,4 +389,4 @@ const FinalCTA = () => (
     </section>
 );
 
-export default DataScienceProgram;
+export default IntroducingAIProgram;

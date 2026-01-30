@@ -134,37 +134,151 @@ const OverviewSection = () => (
     </section>
 );
 
-const ApplyForm = () => (
-    <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">Secure Your Spot</h3>
-        <p className="text-gray-500 text-sm mb-6">Applications closing soon for next batch.</p>
+const ApplyForm = () => {
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        college: '',
+        reason: ''
+    });
+    const [status, setStatus] = useState('idle'); // idle, submitting, success, error
+    const [errorMessage, setErrorMessage] = useState('');
 
-        <form className="space-y-4">
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none" placeholder="John Doe" />
-            </div>
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none" placeholder="john@example.com" />
-            </div>
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                <input type="tel" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none" placeholder="+91 98765 43210" />
-            </div>
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">College / University</label>
-                <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none" placeholder="University Name" />
-            </div>
-            <button className="w-full bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl transition-all mt-2">
-                Submit Application
-            </button>
-            <p className="text-xs text-center text-gray-400 mt-4">
-                By submitting, you agree to our Terms & Privacy Policy.
-            </p>
-        </form>
-    </div>
-);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus('submitting');
+        setErrorMessage('');
+
+        try {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbwZh60W_kXMeIIh-Bs2WSwRIWDTD-rUC5w2aK2qKht6sf-_IZxmwixCjyv93snOq-YvjA/exec', {
+                method: 'POST',
+                // Using text/plain prevents the browser from sending a preflight OPTIONS request
+                // which Google Apps Script doesn't handle. The script can still parse the JSON body.
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(formData) // Send the flat object directly
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const result = await response.json();
+
+            if (result.result === 'success') {
+                setStatus('success');
+                setFormData({ fullName: '', email: '', phone: '', college: '', reason: '' });
+                // Optional: Reset status after a few seconds
+                setTimeout(() => setStatus('idle'), 5000);
+            } else {
+                throw new Error(result.error || result.message || 'Submission failed on server');
+            }
+
+        } catch (error) {
+            console.error('Submission error:', error);
+            setStatus('error');
+            setErrorMessage(error.message);
+        }
+    };
+
+    return (
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Secure Your Spot</h3>
+            <p className="text-gray-500 text-sm mb-6">Applications closing soon for next batch.</p>
+
+            {status === 'success' ? (
+                <div className="bg-green-50 text-green-700 p-4 rounded-lg text-center">
+                    <p className="font-bold">Application submitted successfully!</p>
+                    <p className="text-sm mt-1">We will get back to you shortly.</p>
+                </div>
+            ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input
+                            type="text"
+                            name="fullName"
+                            value={formData.fullName}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none"
+                            placeholder="John Doe"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none"
+                            placeholder="john@example.com"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                        <input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none"
+                            placeholder="+91 98765 43210"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">College / University</label>
+                        <input
+                            type="text"
+                            name="college"
+                            value={formData.college}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none"
+                            placeholder="University Name"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Reason for joining</label>
+                        <textarea
+                            name="reason"
+                            value={formData.reason}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent-orange/20 focus:border-accent-orange transition-all outline-none h-24 resize-none"
+                            placeholder="I want to join because..."
+                        />
+                    </div>
+
+                    {status === 'error' && (
+                        <p className="text-red-600 text-sm text-center">
+                            {errorMessage || 'Something went wrong. Please try again.'}
+                        </p>
+                    )}
+
+                    <button
+                        type="submit"
+                        disabled={status === 'submitting'}
+                        className="w-full bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl transition-all mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                        {status === 'submitting' ? 'Submitting...' : 'Submit Application'}
+                    </button>
+                    <p className="text-xs text-center text-gray-400 mt-4">
+                        By submitting, you agree to our Terms & Privacy Policy.
+                    </p>
+                </form>
+            )}
+        </div>
+    );
+};
 
 const StatsSection = () => (
     <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
