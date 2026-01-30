@@ -937,7 +937,7 @@ const CampusAmbassador = () => {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                            Ready to earn, learn, and lead? Become a Global Interns Campus Ambassador 🚀
+                            Ready to earn, learn, and lead? Become a Global Interns Campus Ambassador
                         </h2>
                         <p className="text-white/90 text-lg mb-8">
                             Join thousands of students who are already making an impact

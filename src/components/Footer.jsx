@@ -38,7 +38,7 @@ const Footer = () => {
                             {[
                                 { icon: Linkedin, href: "https://www.linkedin.com/company/globall-internn/" },
                                 { icon: Instagram, href: "https://www.instagram.com/globallnterns/" },
-                                { icon: Mail, href: "mailto:contact@globalinterns.com" }
+                                { icon: Mail, href: "mailto:contact@globalinterns.in" }
                             ].map((social, idx) => (
                                 <a
                                     key={idx}
@@ -103,7 +103,7 @@ const Footer = () => {
                         <ul className="space-y-4 text-sm text-gray-500">
                             <li className="flex items-start gap-3">
                                 <Mail className="w-5 h-5 text-accent-orange mt-0.5" />
-                                <span>contact@globalinterns.com</span>
+                                <span>contact@globalinterns.in</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-bold">LIVE</span>

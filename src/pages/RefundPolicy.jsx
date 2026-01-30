@@ -22,7 +22,7 @@ const RefundPolicy = () => {
 
                     <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Refund Process</h2>
                     <p>
-                        If you are eligible for a refund under the condition stated above (classes not conducted), please contact our support team at <a href="mailto:support@globalinterns.com" className="text-blue-600 underline">support@globalinterns.com</a> with your transaction details.
+                        If you are eligible for a refund under the condition stated above (classes not conducted), please contact our support team at <a href="mailto:support@globalinterns.in" className="text-blue-600 underline">support@globalinterns.in</a> with your transaction details.
                     </p>
                     <p>
                         Once your request is received and inspected, we will send you an email to notify you of the approval or rejection of your refund.
