@@ -144,7 +144,6 @@ const Navbar = () => {
         { label: 'Career Starter', id: 'career-starter', type: 'dropdown' },
         { label: 'Go Global', id: 'go-global', type: 'dropdown' },
         { label: 'Find Your Dream Job', path: '/find-dream-job', type: 'link' },
-        { label: 'How It Works', id: 'how-it-works', type: 'scroll' },
         { label: 'Campus Ambassador', path: '/campus-ambassador', type: 'link' },
     ];
 
