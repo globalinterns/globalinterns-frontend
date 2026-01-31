@@ -53,45 +53,12 @@ const Certificate = () => {
                         transition={{ duration: 0.5 }}
                         className="relative"
                     >
-                        <div className="bg-primary-bg border-2 border-border rounded-xl p-8 shadow-lg">
-                            <div className="text-center">
-                                <div className="inline-flex items-center justify-center w-20 h-20 bg-accent-orange/10 rounded-full mb-6">
-                                    <Award className="w-10 h-10 text-accent-orange" />
-                                </div>
-
-                                <h3 className="text-2xl font-bold text-text-primary mb-2">
-                                    Certificate of Completion
-                                </h3>
-
-                                <div className="h-px bg-border my-6"></div>
-
-                                <p className="text-text-secondary mb-4">
-                                    This certifies that
-                                </p>
-
-                                <p className="text-xl font-semibold text-text-primary mb-4">
-                                    [Your Name]
-                                </p>
-
-                                <p className="text-text-secondary mb-6">
-                                    has successfully completed the internship program at
-                                </p>
-
-                                <p className="text-2xl font-bold mb-6">
-                                    GLOBAL <span className="text-accent-orange">INTERNS</span>
-                                </p>
-
-                                <div className="flex justify-center gap-8 pt-6 border-t border-border">
-                                    <div className="text-center">
-                                        <div className="h-px bg-text-primary w-24 mb-2"></div>
-                                        <p className="text-sm text-text-secondary">Signature</p>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="h-px bg-text-primary w-24 mb-2"></div>
-                                        <p className="text-sm text-text-secondary">Date</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+                            <img
+                                src="/certificate-mockup.png"
+                                alt="Global Interns Certificate of Internship"
+                                className="w-full h-auto"
+                            />
                         </div>
                     </motion.div>
                 </div>

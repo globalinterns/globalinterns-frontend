@@ -27,12 +27,12 @@ const WhoCanApply = () => {
             <div className="absolute -bottom-32 -right-32 w-72 h-72 bg-blue-300/10 rounded-full blur-3xl" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
                     {/* Left Content */}
                     <motion.div
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
@@ -44,39 +44,59 @@ const WhoCanApply = () => {
                             Who Can Apply
                         </h2>
 
-                        <p className="text-lg text-text-secondary leading-relaxed max-w-xl">
+                        <p className="text-lg text-text-secondary leading-relaxed mb-10">
                             Our internships are designed for anyone who wants real-world
                             experience — whether you're just starting out, switching careers,
                             or upskilling for growth.
                         </p>
-                    </motion.div>
 
-                    {/* Right Checklist Card */}
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={{
-                            visible: { transition: { staggerChildren: 0.12 } }
-                        }}
-                        className="bg-white/70 backdrop-blur border border-border rounded-2xl p-8 shadow-sm"
-                    >
-                        <div className="space-y-5">
+                        {/* Checklist - Moved to Left */}
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={{
+                                visible: { transition: { staggerChildren: 0.1 } }
+                            }}
+                            className="space-y-4"
+                        >
                             {eligibleGroups.map((group, index) => (
                                 <motion.div
                                     key={index}
                                     variants={itemVariants}
-                                    whileHover={{ x: 6 }}
-                                    className="flex items-center gap-4 p-4 rounded-xl bg-primary-secondary hover:bg-primary-secondary/70 transition-colors"
+                                    className="flex items-center gap-4 group"
                                 >
-                                    <div className="w-10 h-10 rounded-full bg-accent-orange/10 flex items-center justify-center">
-                                        <CheckCircle className="w-5 h-5 text-accent-orange" />
+                                    <div className="w-8 h-8 rounded-full bg-accent-orange/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent-orange transition-colors">
+                                        <CheckCircle className="w-5 h-5 text-accent-orange group-hover:text-white transition-colors" />
                                     </div>
-                                    <span className="text-text-primary font-medium text-base">
+                                    <span className="text-text-primary font-medium text-lg">
                                         {group}
                                     </span>
                                 </motion.div>
                             ))}
+                        </motion.div>
+                    </motion.div>
+
+                    {/* Right Image */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="relative"
+                    >
+                        {/* Decorative Elements */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-accent-orange/20 to-blue-400/20 blur-3xl rounded-full opacity-60 -z-10" />
+
+                        <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-accent-orange/10 border border-white/20 ring-1 ring-black/5 group">
+                            <img
+                                src="/who-can-apply.png"
+                                alt="Diverse group of Global Interns students"
+                                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+                            />
+
+                            {/* Overlay Gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60" />
                         </div>
                     </motion.div>
 

@@ -67,9 +67,19 @@ const WhyGlobalInterns = () => {
 
     return (
         <section id="why" className="relative py-24 bg-primary-secondary overflow-hidden">
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0">
+                <img
+                    src="/why-global-interns-bg.png"
+                    alt="Background"
+                    className="w-full h-full object-cover opacity-50"
+                />
+                <div className="absolute inset-0 bg-white/60"></div>
+            </div>
+
             {/* Soft background accents */}
-            <div className="absolute -top-32 -left-32 w-72 h-72 bg-accent-orange/10 rounded-full blur-3xl" />
-            <div className="absolute -bottom-32 -right-32 w-72 h-72 bg-blue-300/10 rounded-full blur-3xl" />
+            <div className="absolute -top-32 -left-32 w-72 h-72 bg-accent-orange/10 rounded-full blur-3xl z-0" />
+            <div className="absolute -bottom-32 -right-32 w-72 h-72 bg-blue-300/10 rounded-full blur-3xl z-0" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}

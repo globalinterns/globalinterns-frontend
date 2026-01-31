@@ -14,7 +14,9 @@ const ProgramsOverview = () => {
                 'Ideal for students and fresh graduates to build strong foundations, gain real-world experience, and confidently start their professional journey.',
             accent: 'from-green-500 to-emerald-500',
             softBg: 'bg-green-500/10',
-            text: 'text-green-600'
+            text: 'text-green-600',
+            image: '/career-starter.png',
+            imgPosition: 'object-[0%_15%]'
         },
         {
             icon: Rocket,
@@ -23,9 +25,21 @@ const ProgramsOverview = () => {
                 'Designed for working professionals and career switchers to master in-demand skills and accelerate career growth.',
             accent: 'from-blue-500 to-indigo-500',
             softBg: 'bg-blue-500/10',
-            text: 'text-blue-600'
+            text: 'text-blue-600',
+            image: '/advanced-skills.png',
+            imgPosition: 'object-top'
         }
     ];
+    // ... existing code ... (skipping domains array as it is unchanged, but ensuring context matches for replace)
+
+    // I will target the programs array definition specifically and the Loop rendering part separately if needed, 
+    // OR try to match a smaller block if the large block fails. 
+    // Since previous large block failed, let's try just replacing the programs array and then the image tag separately.
+    // Actually allow_multiple is false, so I should do it in one go if they are close, but they are far apart.
+    // Wait, the previous tool call tried to replace the whole file from line 9 to 186. That is huge.
+    // I should likely use multi_replace_file_content or just two smaller replace calls.
+    // Since I can only make one call per turn to replace_file_content, I'll use multi_replace.
+
 
     const domains = [
         {
@@ -140,25 +154,40 @@ const ProgramsOverview = () => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
                                 whileHover={{ y: -8 }}
-                                className="group relative bg-white/70 backdrop-blur border border-border rounded-3xl p-10 shadow-sm hover:shadow-xl transition-all"
+                                className="group relative bg-white/70 backdrop-blur border border-border rounded-3xl p-8 overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col h-full"
                             >
                                 <div
-                                    className={`absolute top-0 left-0 w-full h-1 rounded-t-3xl bg-gradient-to-r ${program.accent}`}
+                                    className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${program.accent}`}
                                 />
-                                <div
-                                    className={`w-16 h-16 rounded-2xl ${program.softBg} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform`}
-                                >
-                                    <Icon className={`w-8 h-8 ${program.text}`} />
+
+                                <div className="flex items-start gap-6 mb-6">
+                                    <div
+                                        className={`w-16 h-16 rounded-2xl ${program.softBg} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}
+                                    >
+                                        <Icon className={`w-8 h-8 ${program.text}`} />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-text-primary mb-2">
+                                            {program.title}
+                                        </h3>
+                                        <p className="text-text-secondary leading-relaxed text-sm">
+                                            {program.description}
+                                        </p>
+                                    </div>
                                 </div>
-                                <h3 className="text-2xl font-bold text-text-primary mb-4">
-                                    {program.title}
-                                </h3>
-                                <p className="text-text-secondary leading-relaxed mb-8">
-                                    {program.description}
-                                </p>
+
+                                {/* Image Section */}
+                                <div className="mt-auto mb-6 rounded-xl overflow-hidden shadow-md border border-gray-100">
+                                    <img
+                                        src={program.image}
+                                        alt={program.title}
+                                        className={`w-full h-56 object-cover ${program.imgPosition} transform group-hover:scale-105 transition-transform duration-500`}
+                                    />
+                                </div>
+
                                 <button
                                     onClick={() => scrollToSection('apply')}
-                                    className="inline-flex items-center gap-2 font-semibold text-accent-orange group-hover:gap-3 transition-all"
+                                    className="inline-flex items-center gap-2 font-semibold text-accent-orange group-hover:gap-3 transition-all mt-2"
                                 >
                                     Explore Programs
                                     <ArrowRight className="w-5 h-5" />
