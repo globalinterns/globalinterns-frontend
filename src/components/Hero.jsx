@@ -109,7 +109,7 @@ const Hero = () => {
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-accent-orange/20 border border-white/20 ring-1 ring-black/5 group">
                             <video
                                 ref={videoRef}
-                                className="w-full h-auto object-cover rounded-2xl"
+                                className="w-full h-auto object-cover rounded-2xl scale-[1.35]"
                                 autoPlay
                                 loop
                                 muted
