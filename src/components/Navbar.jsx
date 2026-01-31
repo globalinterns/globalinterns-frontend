@@ -117,8 +117,6 @@ const Navbar = () => {
     const handleNavClick = (item) => {
         if (item.type === 'dropdown') return; // Do nothing on click for dropdown (handled by hover)
 
-        setIsMobileMenuOpen(false); // Close mobile menu
-
         if (item.type === 'link') {
             navigate(item.path);
             window.scrollTo(0, 0);
@@ -135,7 +133,6 @@ const Navbar = () => {
     };
 
     const handleProgramClick = (path) => {
-        setIsMobileMenuOpen(false); // Close mobile menu
         if (path && path !== '#') {
             navigate(path);
             window.scrollTo(0, 0);
@@ -229,9 +226,9 @@ const Navbar = () => {
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, y: 10 }}
                                                 transition={{ duration: 0.2 }}
-                                                className={`fixed left-1/2 -translate-x-1/2 top-24 mt-0 
-                                            bg-white/95 backdrop-blur-xl border border-border rounded-3xl shadow-xl p-8 z-50 origin-top max-h-[80vh] overflow-y-auto
-                                            ${item.label === 'Go Global' ? 'w-[95vw] max-w-[1100px] flex gap-8' : 'w-[95vw] max-w-[1000px] grid grid-cols-4 gap-8'}`}
+                                                className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 
+                                            bg-white/95 backdrop-blur-xl border border-border rounded-3xl shadow-xl p-8 z-50 origin-top
+                                            ${item.label === 'Go Global' ? 'w-[1000px] flex gap-8' : 'w-[900px] grid grid-cols-4 gap-8'}`}
                                             >
                                                 {item.label === 'Go Global' ? (
                                                     // Premium Sidebar Layout for Go Global
