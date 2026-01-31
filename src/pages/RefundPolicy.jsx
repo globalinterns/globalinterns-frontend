@@ -1,4 +1,5 @@
 import React from 'react';
+import { Mail } from 'lucide-react';
 
 const RefundPolicy = () => {
     return (
@@ -7,34 +8,43 @@ const RefundPolicy = () => {
                 <h1 className="text-4xl font-bold mb-8">Refund Policy</h1>
                 <p className="text-gray-500 mb-10 text-sm">Last Updated: January 2026</p>
 
-                <section className="space-y-6 text-gray-700 leading-relaxed">
-                    <p>
-                        Thank you for purchasing our programs at Global Interns. We strive to provide the best learning experience possible.
+                <section className="space-y-8 text-gray-700 leading-relaxed">
+                    <p className="text-lg">
+                        We are committed to ensuring your satisfaction with any product, service, course, or workshop you have purchased from us. Please read the following terms carefully as they govern our refund policy.
                     </p>
 
-                    <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Refund Eligibility</h2>
-                    <p className="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 font-medium">
-                        Refunds are ONLY applicable if the classes for the registered program are NOT conducted by Global Interns.
-                    </p>
-                    <p>
-                        If the classes have commenced or if the student has accessed the learning materials, no refund request will be entertained.
-                    </p>
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">Workshops</h2>
+                        <p className="p-4 bg-gray-50 border-l-4 border-accent-orange text-gray-700">
+                            No refunds or credits will be granted against payments related to workshops.
+                        </p>
+                    </div>
 
-                    <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Refund Process</h2>
-                    <p>
-                        If you are eligible for a refund under the condition stated above (classes not conducted), please contact our support team at <a href="mailto:support@globalinterns.in" className="text-blue-600 underline">support@globalinterns.in</a> with your transaction details.
-                    </p>
-                    <p>
-                        Once your request is received and inspected, we will send you an email to notify you of the approval or rejection of your refund.
-                        If you are approved, then your refund will be processed, and a credit will automatically be applied to your credit card or original method of payment, within a certain amount of days.
-                    </p>
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">Courses</h2>
+                        <ul className="list-disc pl-5 space-y-2">
+                            <li>
+                                We do not offer refunds for courses. Please carefully consider your schedule and commitment before enrolling.
+                            </li>
+                            <li>
+                                You may transfer your enrollment to a subsequent cohort. A nominal administrative fee will apply for such transfers.
+                            </li>
+                        </ul>
+                    </div>
 
-                    <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Late or Missing Refunds</h2>
-                    <p>
-                        If you haven’t received a refund yet, first check your bank account again.
-                        Then contact your credit card company, it may take some time before your refund is officially posted.
-                        Next, contact your bank. There is often some processing time before a refund is posted.
-                    </p>
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact us</h2>
+                        <p className="mb-4">
+                            If you have any questions about our refund policy, please contact us by email at:
+                        </p>
+                        <a
+                            href="mailto:contact@globalinterns.in"
+                            className="inline-flex items-center gap-2 text-accent-orange font-semibold hover:text-orange-700 transition-colors"
+                        >
+                            <Mail className="w-5 h-5" />
+                            contact@globalinterns.in
+                        </a>
+                    </div>
                 </section>
             </div>
         </div>
